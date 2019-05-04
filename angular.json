@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/styles.sass"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -84,7 +85,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.sass"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -136,5 +138,10 @@
       }
     }
   },
-  "defaultProject": "Teacher-Journal-App"
+  "defaultProject": "Teacher-Journal-App",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
