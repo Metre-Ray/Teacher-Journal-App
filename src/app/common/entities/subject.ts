@@ -5,4 +5,5 @@ export interface Subject {
   'Teacher Surname': string;
   Cabinet: number;
   Description: string;
+  Dates: string[];
 }
