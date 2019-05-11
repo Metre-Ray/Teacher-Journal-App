@@ -1,0 +1,43 @@
+@import '../../../../styles/button';
+
+input, textarea {
+  border-color: rgb(80, 89, 131);
+  background-color: black;
+  color: white;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+// button[type="submit"] {
+//   background: rgb(46, 146, 185);
+//   color: white;
+// }
+
+button:hover {
+  background: #007bff;
+}
+// button:hover {
+//   background: rgb(0, 37, 116);
+// }
+
+// button[type="submit"]:hover {
+//   background: blue;
+// }
+
+
+
+// input:enabled {
+//   background: blue;
+// }
+
+// input:target {
+//   background: blue;
+// }
+
+// .form-control:valid {
+//   background-image: none;
+//   border-color: initial;
+// }
+
