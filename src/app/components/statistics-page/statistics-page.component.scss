@@ -1,0 +1,37 @@
+div {
+  border: 1px solid white;
+}
+
+.mcontainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.block2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.block2 > div {
+  text-align: center;
+  cursor: pointer;
+}
+
+.block2 > div:hover, li:hover {
+  color: rgb(179, 214, 255);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 5px;
+  border: 1px solid white;
+  text-align: center;
+  cursor: pointer;
+}
+

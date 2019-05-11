@@ -1,0 +1,14 @@
+<div class="mcontainer">
+  <div class="block1">
+    <div class="block2">
+      <div>Students</div>
+      <div>Subjects</div>
+    </div>
+    <div>
+      <ul>
+        <li *ngFor="let student of students">{{student.Name + student['Last name']}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="block1">Statistics</div>
+</div>
