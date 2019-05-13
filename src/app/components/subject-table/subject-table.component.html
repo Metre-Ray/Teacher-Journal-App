@@ -1,0 +1,19 @@
+<table class="table table-striped table-bordered table-hover table-dark">
+  <caption>Table of student marks</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last Name</th>
+      <th>Average mark</th>
+      <th *ngFor="let date of dates">{{ date | date }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.Name}}</td>
+      <td>{{student['Last name']}}</td>
+      <td>{{calcAverageMark(student)}}</td>
+      <td contenteditable *ngFor="let date of dates">{{student.Marks[subject][date]}}</td>
+    </tr>
+  </tbody>
+</table>
