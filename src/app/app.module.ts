@@ -18,6 +18,7 @@ import { SubjectMarksPageComponent } from './components/subject-marks-page/subje
 import { ExportPageComponent } from './components/export-page/export-page.component';
 import { StatisticsPageComponent } from './components/statistics-page/statistics-page.component';
 import { SubjectFormComponent } from './components/subject-form/subject-form.component';
+import { SubjectTableComponent } from './components/subject-table/subject-table.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SubjectFormComponent } from './components/subject-form/subject-form.com
     SubjectMarksPageComponent,
     ExportPageComponent,
     StatisticsPageComponent,
-    SubjectFormComponent
+    SubjectFormComponent,
+    SubjectTableComponent
   ],
   imports: [
     BrowserModule,
