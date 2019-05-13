@@ -2,25 +2,6 @@ div {
   border: 1px solid white;
 }
 
-.mcontainer {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-
-.block2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.block2 > div {
-  text-align: center;
-  cursor: pointer;
-}
-
-.block2 > div:hover, li:hover {
-  color: rgb(179, 214, 255);
-}
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -35,3 +16,21 @@ li {
   cursor: pointer;
 }
 
+.mcontainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.block > div {
+  text-align: center;
+  cursor: pointer;
+}
+
+.block > div:hover, li:hover {
+  color: rgb(179, 214, 255);
+}
