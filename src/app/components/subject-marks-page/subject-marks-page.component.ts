@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RequestDataFromServerService } from 'src/app/common/services/request-data-from-server.service';
 import { Subject } from 'src/app/common/entities/subject';
 import { Student } from 'src/app/common/entities/student';
-import { calcAverage } from 'src/app/common/helpers/calculations';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-subject-marks-page',
@@ -16,9 +16,10 @@ export class SubjectMarksPageComponent implements OnInit {
   dates: string[];
   @Input() subject = 'Maths';
 
-  constructor(private service: RequestDataFromServerService) { }
+  constructor(private service: RequestDataFromServerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.subject = this.route.snapshot.paramMap.get('name');
     this.service.getMockData().subscribe((data) => {
       this.students = data.students;
       this.subjects = data.subjects;
@@ -28,9 +29,5 @@ export class SubjectMarksPageComponent implements OnInit {
         }
       });
     });
-  }
-
-  calcAverageMark(student): number {
-    return Math.round(calcAverage(Object.values(student.Marks[this.subject])) * 10) / 10;
   }
 }

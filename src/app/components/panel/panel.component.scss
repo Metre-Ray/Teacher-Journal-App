@@ -9,7 +9,7 @@ div {
   margin-bottom: 50px;
 }
 
-button:focus {
+button:focus, .active-link {
   background: rgb(0, 37, 116);
 }
 
