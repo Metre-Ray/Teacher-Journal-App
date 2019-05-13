@@ -16,7 +16,6 @@ export class StudentPageComponent implements OnInit {
   ngOnInit() {
     this.service.getMockData().subscribe((data) => {
       this.students = data.students;
-      console.log(data);
     });
   }
 }
