@@ -4,7 +4,7 @@
   <button class="btn btn-primary btn-add"><span>+</span></button>
 </div>
 
-<div class="table-container">
+<div class="table-container" *ngIf="subject">
   <app-subject-table [students]="students" [dates]="dates" [subject]="subject"></app-subject-table>
 </div>
 
