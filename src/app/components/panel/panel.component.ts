@@ -8,8 +8,6 @@ import { EventEmitter } from 'events';
 })
 export class PanelComponent implements OnInit {
 
-  @Output() change: EventEmitter = new EventEmitter();
-
   constructor() { }
 
   ngOnInit() {
