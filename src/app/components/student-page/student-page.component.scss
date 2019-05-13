@@ -1,3 +1,8 @@
+span {
+  position: relative;
+  top: -4px;
+}
+
 .buttons-container {
   margin: 30px;
   text-align: center;
@@ -11,4 +16,5 @@
 .fa-user-edit {
   position: relative;
   left: 3px;
+  top: 0px;
 }
