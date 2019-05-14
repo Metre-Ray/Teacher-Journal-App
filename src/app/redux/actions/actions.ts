@@ -13,6 +13,7 @@ export enum ActionTypes {
   LoadFailed = 'Data Loaded Failed'
 }
 
+
 export class AddStudent implements Action {
   readonly type = ActionTypes.AddStudent;
 

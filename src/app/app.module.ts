@@ -5,24 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './root/app.component';
-import { StudentTableComponent } from './components/student-table/student-table.component';
-import { StudentPageComponent } from './components/student-page/student-page.component';
+import { StudentTableComponent } from './components/students/student-table/student-table.component';
+import { StudentPageComponent } from './components/students/student-page/student-page.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { HeadComponent } from './components/head/head.component';
-import { RoundButtonComponent } from './shared/components/round-button/round-button.component';
-import { FormComponent } from './shared/components/form/form.component';
-import { StudentFormComponent } from './components/student-form/student-form.component';
-import { SubjectsListPageComponent } from './components/subjects-list-page/subjects-list-page.component';
-import { SubjectMarksPageComponent } from './components/subject-marks-page/subject-marks-page.component';
+import { StudentFormComponent } from './components/students/student-form/student-form.component';
+import { SubjectsListPageComponent } from './components/subjects/subjects-list-page/subjects-list-page.component';
+import { SubjectMarksPageComponent } from './components/subjects/subject-marks-page/subject-marks-page.component';
 import { ExportPageComponent } from './components/export-page/export-page.component';
 import { StatisticsPageComponent } from './components/statistics-page/statistics-page.component';
-import { SubjectFormComponent } from './components/subject-form/subject-form.component';
-import { SubjectTableComponent } from './components/subject-table/subject-table.component';
+import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
+import { SubjectTableComponent } from './components/subjects/subject-table/subject-table.component';
 
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './redux/reducers';
-import { EffectsModule } from '@ngrx/effects';
-import { DataEffects } from './redux/effects/data.effects';
+import { SharedModule } from './shared/shared.module';
+import { ReduxModule } from './redux/redux.module';
 
 @NgModule({
   declarations: [
@@ -31,8 +27,6 @@ import { DataEffects } from './redux/effects/data.effects';
     StudentPageComponent,
     PanelComponent,
     HeadComponent,
-    RoundButtonComponent,
-    FormComponent,
     StudentFormComponent,
     SubjectsListPageComponent,
     SubjectMarksPageComponent,
@@ -45,8 +39,8 @@ import { DataEffects } from './redux/effects/data.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([DataEffects])
+    SharedModule,
+    ReduxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

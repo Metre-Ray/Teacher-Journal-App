@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Student } from '../../common/entities/student';
+import { Student } from '../../../common/entities/student';
 
 @Component({
   selector: 'app-student-table',

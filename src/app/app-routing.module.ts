@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StudentPageComponent } from './components/student-page/student-page.component';
-import { StudentFormComponent } from './components/student-form/student-form.component';
-import { SubjectFormComponent } from './components/subject-form/subject-form.component';
-import { SubjectMarksPageComponent } from './components/subject-marks-page/subject-marks-page.component';
-import { SubjectsListPageComponent } from './components/subjects-list-page/subjects-list-page.component';
+import { StudentPageComponent } from './components/students/student-page/student-page.component';
+import { StudentFormComponent } from './components/students/student-form/student-form.component';
+import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
+import { SubjectMarksPageComponent } from './components/subjects/subject-marks-page/subject-marks-page.component';
+import { SubjectsListPageComponent } from './components/subjects/subjects-list-page/subjects-list-page.component';
 import { StatisticsPageComponent } from './components/statistics-page/statistics-page.component';
 import { ExportPageComponent } from './components/export-page/export-page.component';
 
