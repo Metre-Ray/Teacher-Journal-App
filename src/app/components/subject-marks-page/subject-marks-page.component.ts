@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RequestDataFromServerService } from 'src/app/common/services/request-data-from-server.service';
 import { Subject } from 'src/app/common/entities/subject';
 import { Student } from 'src/app/common/entities/student';
 import { ActivatedRoute } from '@angular/router';
+import { OurData } from 'src/app/common/entities/data';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/redux/reducers';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-subject-marks-page',
@@ -15,12 +18,13 @@ export class SubjectMarksPageComponent implements OnInit {
   subjects: Subject[];
   dates: string[];
   @Input() subject = 'Maths';
+  data: Observable<OurData> = this.store.select(state => state.data);
 
-  constructor(private service: RequestDataFromServerService, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private store: Store<State>) { }
 
   ngOnInit() {
     this.subject = this.route.snapshot.paramMap.get('name');
-    this.service.getMockData().subscribe((data) => {
+    this.data.subscribe((data) => {
       this.students = data.students;
       this.subjects = data.subjects;
       this.subjects.forEach((el) => {

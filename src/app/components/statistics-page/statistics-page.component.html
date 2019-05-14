@@ -6,7 +6,7 @@
     </div>
     <div>
       <ul>
-        <li *ngFor="let student of students">{{student.Name + student['Last name']}}</li>
+        <li *ngFor="let student of students$ | async">{{student.Name + student['Last name']}}</li>
       </ul>
     </div>
   </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestDataFromServerService } from 'src/app/common/services/request-data-from-server.service';
 import { Student } from 'src/app/common/entities/student';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/redux/reducers';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-statistics-page',
@@ -9,14 +11,11 @@ import { Student } from 'src/app/common/entities/student';
 })
 export class StatisticsPageComponent implements OnInit {
 
-  students: Student[];
+  students$: Observable<Student[]> = this.store.select(state => state.data.students);
 
-  constructor(private service: RequestDataFromServerService) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
-    this.service.getMockData().subscribe(data => {
-      this.students = data.students;
-    });
   }
 
 }

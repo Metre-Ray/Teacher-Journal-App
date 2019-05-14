@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './root/app.component';
 import { StudentTableComponent } from './components/student-table/student-table.component';
 import { StudentPageComponent } from './components/student-page/student-page.component';
-
 import { PanelComponent } from './components/panel/panel.component';
 import { HeadComponent } from './components/head/head.component';
 import { RoundButtonComponent } from './shared/components/round-button/round-button.component';
@@ -19,6 +18,11 @@ import { ExportPageComponent } from './components/export-page/export-page.compon
 import { StatisticsPageComponent } from './components/statistics-page/statistics-page.component';
 import { SubjectFormComponent } from './components/subject-form/subject-form.component';
 import { SubjectTableComponent } from './components/subject-table/subject-table.component';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './redux/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { DataEffects } from './redux/effects/data.effects';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,9 @@ import { SubjectTableComponent } from './components/subject-table/subject-table.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([DataEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
