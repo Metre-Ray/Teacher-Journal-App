@@ -16,13 +16,6 @@ export enum ActionTypes {
 
 export class AddStudent implements Action {
   readonly type = ActionTypes.AddStudent;
-
-  constructor(public payload: {
-    name: string,
-    surname: string,
-    address: string,
-    description: string
-  }) {}
 }
 
 export class DeleteStudent implements Action {
@@ -31,13 +24,6 @@ export class DeleteStudent implements Action {
 
 export class AddSubject implements Action {
   readonly type = ActionTypes.AddSubject;
-
-  constructor(public payload: {
-    name: string,
-    teacher: string,
-    room: string,
-    description: string
-  }) {}
 }
 
 
@@ -49,7 +35,6 @@ export class LoadSuccess implements Action {
   readonly type = ActionTypes.LoadSuccess;
 
   constructor(public payload: IState) {}
-
 }
 
 export type ActionsUnion = AddStudent | AddSubject | DeleteStudent | LoadData | LoadSuccess;
