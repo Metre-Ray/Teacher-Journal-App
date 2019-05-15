@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { Student } from '../../../common/entities/student';
 
 @Component({
@@ -10,9 +10,16 @@ export class StudentTableComponent implements OnInit {
 
   @Input() students: Student[];
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
+  }
+
+  onRowClick(event) {
+    const target = event.currentTarget;
+    if (target.classList.contains('selected')) {
+      this.renderer.removeClass(target, 'selected');
+    } else { this.renderer.addClass(target, 'selected'); }
   }
 
 }

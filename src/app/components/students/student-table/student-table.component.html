@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students" >
+    <tr *ngFor="let student of students" (click)="onRowClick($event)">
       <td>{{student.Index}}</td>
       <td>{{student.Name}}</td>
       <td>{{student['Last name']}}</td>
