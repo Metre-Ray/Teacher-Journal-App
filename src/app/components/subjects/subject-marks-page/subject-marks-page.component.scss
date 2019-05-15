@@ -13,6 +13,7 @@ form {
 
 .table-container {
   height: 70vh;
+  min-height: 300px;
   overflow: auto;
 }
 
@@ -39,6 +40,3 @@ form {
   display: block;
   margin-top: -8px;
 }
-
-
-
