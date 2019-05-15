@@ -1,0 +1,15 @@
+@import '../../../styles/button';
+
+div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+  grid-gap: 20px;
+  justify-content: space-around;
+  margin: 30px;
+  margin-bottom: 50px;
+}
+
+button:focus, .active-link {
+  background: rgb(0, 37, 116);
+}
+
