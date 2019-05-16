@@ -5,12 +5,11 @@ import { Directive, ElementRef, Input, HostListener, Renderer2 } from '@angular/
 })
 export class ToggleClassDirective {
 
+  @Input('appToggleClass') className: string;
+  defaultName = 'clicked';
   toggleFlag = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
-
-  @Input('appToggleClass') className: string;
-  defaultName = 'clicked';
 
   @HostListener('click') onClick() {
     this.toggle(this.className || this.defaultName);
