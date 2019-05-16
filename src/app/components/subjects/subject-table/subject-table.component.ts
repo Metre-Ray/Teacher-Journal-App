@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/common/entities/student';
-import { Subject } from 'src/app/common/entities/subject';
 import { calcAverage } from 'src/app/common/helpers/calculations';
 
 @Component({
@@ -20,6 +19,7 @@ export class SubjectTableComponent implements OnInit {
   }
 
   calcAverageMark(student): number {
+    if (student.Marks[this.subject] === undefined) { return null; }
     return Math.round(calcAverage(Object.values(student.Marks[this.subject])) * 10) / 10;
   }
 
