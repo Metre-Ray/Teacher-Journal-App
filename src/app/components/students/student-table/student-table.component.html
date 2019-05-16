@@ -10,8 +10,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students" [appToggleClass]="'selected'">
-      <td>{{student.Index}}</td>
+    <tr *ngFor="let student of students; let i=index" [appToggleClass]="'selected'">
+      <td>{{i + 1}}</td>
       <td>{{student.Name}}</td>
       <td>{{student['Last name']}}</td>
       <td><div class="block1">{{student.Address}}</div></td>
