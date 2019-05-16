@@ -19,7 +19,7 @@ import { SubjectTableComponent } from './components/subjects/subject-table/subje
 
 import { SharedModule } from './shared/shared.module';
 import { ReduxModule } from './redux/redux.module';
-import { SortPipe } from './shared/pipes/sort.pipe';
+
 
 @NgModule({
   declarations: [
@@ -34,8 +34,7 @@ import { SortPipe } from './shared/pipes/sort.pipe';
     ExportPageComponent,
     StatisticsPageComponent,
     SubjectFormComponent,
-    SubjectTableComponent,
-    SortPipe
+    SubjectTableComponent
   ],
   imports: [
     BrowserModule,
