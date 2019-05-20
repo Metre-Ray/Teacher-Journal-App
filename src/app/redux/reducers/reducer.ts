@@ -37,6 +37,31 @@ export function Reducer(state = initialState, action: ActionsUnion): IState {
         action.payload.description
       );
       newState.subjects.push(newSubject);
+      newState.students.forEach((student) => {
+        student.Marks[action.payload.name] = {};
+      });
+      return newState;
+    }
+
+    case ActionTypes.AddSubjectDate: {
+      const newState = {...state};
+      const subject = newState.subjects.find((el) => el.Name === action.payload.subject);
+      if (subject && subject.Dates) { subject.Dates.push(action.payload.date); }
+      return newState;
+    }
+
+    case ActionTypes.AddDateOrMarks: {
+      const newState = {...state};
+      const values = action.payload.values;
+      if (!action.payload.subject || Object.keys(values).length === 0) { console.log('gere'); return newState; }
+      try {
+        for (const ind of Object.keys(values)) {
+          newState.students.find((el) => el.Id === ind).Marks[action.payload.subject][values[ind][0]] = values[ind][1];
+        }
+      } catch {
+        console.log('Error in AddDateOrMarks!');
+        return newState;
+      }
       return newState;
     }
 

@@ -7,7 +7,8 @@ export enum ActionTypes {
   AddSubject = '[SubjectForm Component] AddSubject',
   DeleteSubject = '[SubjectListPage Component] DeleteSubject',
   ChangeSubject = '[SubjectListPage Component] ChangeSubject',
-  AddNewDate = '[SubjectMarksPage Component] AddNewDate',
+  AddSubjectDate = '[SubjectMarksPage Component] AddSubjectDate',
+  AddDateOrMarks = '[SubjectMarksPage Component] AddDateOrMarks',
   LoadData = 'Load Data',
   LoadSuccess = 'Data Loaded Success',
   LoadFailed = 'Data Loaded Failed'
@@ -40,6 +41,17 @@ export class AddSubject implements Action {
   }) {}
 }
 
+export class AddSubjectDate implements Action {
+  readonly type = ActionTypes.AddSubjectDate;
+
+  constructor(public payload: {subject: string, date: string}) {}
+}
+
+export class AddDateOrMarks implements Action {
+  readonly type = ActionTypes.AddDateOrMarks;
+
+  constructor(public payload: {subject: string, values: object}) {}
+}
 
 export class LoadData implements Action {
   readonly type = ActionTypes.LoadData;
@@ -51,4 +63,4 @@ export class LoadSuccess implements Action {
   constructor(public payload: IState) {}
 }
 
-export type ActionsUnion = AddStudent | AddSubject | DeleteStudent | LoadData | LoadSuccess;
+export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | LoadData | LoadSuccess;
