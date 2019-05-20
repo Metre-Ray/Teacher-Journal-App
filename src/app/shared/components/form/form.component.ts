@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -16,6 +17,12 @@ export class FormComponent implements OnInit {
   @Input() place3: string;
   @Input() place4: string;
   @Output() submitted = new EventEmitter();
+  form = new FormGroup({
+    value0: new FormControl('', Validators.required),
+    value1: new FormControl('', Validators.required),
+    value2: new FormControl(''),
+    value3: new FormControl('')
+  });
 
   constructor() { }
 
@@ -24,16 +31,12 @@ export class FormComponent implements OnInit {
 
   onSubmit(event) {
     event.preventDefault();
-    const data = {
-      value0: event.target[0].value,
-      value1: event.target[1].value,
-      value2: event.target[2].value,
-      value3: event.target[3].value
-    };
-    event.target[0].value = '';
-    event.target[1].value = '';
-    event.target[2].value = '';
-    event.target[3].value = '';
-    this.submitted.emit(data);
+    this.submitted.emit(this.form.value);
+    this.form.setValue({
+      value0: '',
+      value1: '',
+      value2: '',
+      value3: ''
+    });
   }
 }
