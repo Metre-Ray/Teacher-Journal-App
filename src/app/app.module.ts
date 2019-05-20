@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './root/app.component';
 import { StudentTableComponent } from './components/students/student-table/student-table.component';
@@ -19,6 +20,7 @@ import { SubjectTableComponent } from './components/subjects/subject-table/subje
 
 import { SharedModule } from './shared/shared.module';
 import { ReduxModule } from './redux/redux.module';
+import { NewDateFormComponent } from './components/subjects/new-date-form/new-date-form.component';
 
 
 @NgModule({
@@ -34,16 +36,19 @@ import { ReduxModule } from './redux/redux.module';
     ExportPageComponent,
     StatisticsPageComponent,
     SubjectFormComponent,
-    SubjectTableComponent
+    SubjectTableComponent,
+    NewDateFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    ReduxModule
+    ReduxModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: []
 })
 export class AppModule { }
