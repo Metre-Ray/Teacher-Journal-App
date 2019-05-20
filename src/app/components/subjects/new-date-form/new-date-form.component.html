@@ -1,0 +1,12 @@
+<div class="form-container" (submit)="onSubmit($event)">
+  <form action="" [formGroup]="form">
+    <label for="teacher">Add new date: </label>
+    <input type="date" name="teacher" class="form-control" formControlName="date">
+    <div class="btn-container">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn btn-primary" (click)="onClose()">Close</button>
+    </div>
+  </form>
+</div>
+
+

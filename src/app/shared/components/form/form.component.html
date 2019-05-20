@@ -1,0 +1,21 @@
+<form action="" (submit)="onSubmit($event)" [formGroup]="form">
+  <div class="form-group ">
+    <label for="Name" class="col-form-label">{{label1}} </label>
+    <input type="text" name="Name" placeholder="{{place1}}" class="form-control bg-dark" required autocomplete="off" formControlName="value0">
+  </div>
+  <div class="form-group ">
+    <label for="Surname" class="col-form-label">{{label2}}</label>
+    <input type="text" name="Surname" placeholder="{{place2}}" class="form-control bg-dark" required autocomplete="off" formControlName="value1">
+  </div>
+  <div class="form-group ">
+    <label for="Address" class="col-form-label">{{label3}} </label>
+    <input type="text" name="Address" placeholder="{{place3}}" class="form-control bg-dark" autocomplete="off" formControlName="value2">
+  </div>
+  <div class="form-group ">
+    <label for="Description" class="col-form-label">{{label4}} </label>
+    <textarea cols="30" rows="10" name="Description" placeholder="{{place4}}" class="form-control bg-dark" formControlName="value3"></textarea>
+  </div>
+  <div class="form-group btn-container">
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Add</button>
+  </div>
+</form>

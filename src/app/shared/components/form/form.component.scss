@@ -1,0 +1,18 @@
+@import '../../../../styles/button';
+
+input, textarea {
+  border-color: rgb(80, 89, 131);
+  color: white;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+input:focus, textarea:focus {
+  color: white;
+}
+
+button:hover {
+  background: #007bff;
+}
