@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy} from '@angular/core';
 import { Subject } from 'src/app/common/entities/subject';
 import { Student } from 'src/app/common/entities/student';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,8 @@ import { OurData } from 'src/app/common/entities/data';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { Observable, Subscription } from 'rxjs';
+import { AddSubjectDate, AddDateOrMarks } from 'src/app/redux/actions/actions';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-subject-marks-page',
@@ -14,12 +16,15 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class SubjectMarksPageComponent implements OnInit, OnDestroy {
 
+  @Input() subject = 'Maths';
   students: Student[];
   subjects: Subject[];
   dates: string[];
-  @Input() subject = 'Maths';
   data$: Observable<OurData> = this.store.select(state => state.data);
   subscription: Subscription;
+  newValues = {};
+  modalFlag = false;
+  teacher = new FormControl();
 
   constructor(private route: ActivatedRoute, private store: Store<State>) { }
 
@@ -34,6 +39,28 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
         }
       });
     });
+  }
+
+  addDate() {
+    this.modalFlag = true;
+  }
+
+  onDateSubmit(data) {
+    this.modalFlag = false;
+    this.store.dispatch(new AddSubjectDate({subject: this.subject, date: data}));
+  }
+
+  onModalClose() {
+    this.modalFlag = false;
+  }
+
+  save(event) {
+    event.preventDefault();
+    this.store.dispatch(new AddDateOrMarks({subject: this.subject, values: this.newValues}));
+  }
+
+  onEdit(data) {
+    this.newValues[data.id] = [data.date, data.newContent];
   }
 
   ngOnDestroy() {

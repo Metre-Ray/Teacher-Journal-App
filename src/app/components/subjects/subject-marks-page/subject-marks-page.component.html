@@ -1,15 +1,19 @@
 <h2>{{subject}}</h2>
 
 <div class="top-btn-container">
-  <button class="btn btn-primary btn-add"><span>+</span></button>
+  <button class="btn btn-primary btn-add" (click)="addDate()"><span>+</span></button>
+</div>
+
+<div class="modal-container" *ngIf="modalFlag">
+  <app-new-date-form (submitted)="onDateSubmit($event)" (closed)="onModalClose()"></app-new-date-form>
 </div>
 
 <div class="table-container" *ngIf="subject">
-  <app-subject-table [students]="students | sort:'Last name'" [dates]="dates" [subject]="subject"></app-subject-table>
+  <app-subject-table [students]="students | sort:'Last name'" [dates]="dates" [subject]="subject" (edited)="onEdit($event)"></app-subject-table>
 </div>
 
 <div class="form-container">
-  <form action="">
+  <form action="" (submit)="save($event)" [formGroup]="teacher">
     <label for="teacher">Teacher: </label>
     <input type="text" name="teacher" class="form-control">
     <div class="btn-container">
