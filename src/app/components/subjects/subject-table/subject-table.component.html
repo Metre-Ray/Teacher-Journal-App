@@ -15,7 +15,7 @@
       <td>{{student.Name}}</td>
       <td>{{student['Last name']}}</td>
       <td>{{calcAverageMark(student)}}</td>
-      <td contenteditable *ngFor="let date of dates">{{student.Marks[subject][date]}}</td>
+      <td contenteditable *ngFor="let date of dates" (input)="onMarkEdit(student.Id, date, $event)">{{student.Marks[subject][date]}}</td>
     </tr>
   </tbody>
 </table>
