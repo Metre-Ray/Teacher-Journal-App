@@ -54,10 +54,12 @@ export function Reducer(state = initialState, action: ActionsUnion): IState {
     case ActionTypes.AddDateOrMarks: {
       const newState = cloneObject(state) as IState;
       const values = action.payload.values;
-      if (!action.payload.subject || Object.keys(values).length === 0) { console.log('gere'); return newState; }
+      if (!action.payload.subject || Object.keys(values).length === 0) { return newState; }
       try {
         for (const ind of Object.keys(values)) {
-          newState.students.find((el) => el.Id === ind).Marks[action.payload.subject][values[ind][0]] = values[ind][1];
+          const marks = newState.students.find((el) => el.Id === ind).Marks;
+          if (marks[action.payload.subject] === undefined) { marks[action.payload.subject] = {}; }
+          marks[action.payload.subject][values[ind][0]] = values[ind][1];
         }
       } catch {
         console.log('Error in AddDateOrMarks!');
