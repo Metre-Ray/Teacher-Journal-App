@@ -1,5 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-panel',
