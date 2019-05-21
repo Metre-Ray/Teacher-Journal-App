@@ -40,3 +40,13 @@ h1 {
   margin: 0;
   font-size: 2rem;
 }
+
+app-language-selector {
+  justify-self: end;
+}
+
+.wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  margin-bottom: 50px;
+}
