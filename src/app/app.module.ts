@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './root/app.component';
 import { StudentTableComponent } from './components/students/student-table/student-table.component';
@@ -17,11 +19,16 @@ import { ExportPageComponent } from './components/export-page/export-page.compon
 import { StatisticsPageComponent } from './components/statistics-page/statistics-page.component';
 import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
 import { SubjectTableComponent } from './components/subjects/subject-table/subject-table.component';
+import { NewDateFormComponent } from './components/subjects/new-date-form/new-date-form.component';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 
 import { SharedModule } from './shared/shared.module';
 import { ReduxModule } from './redux/redux.module';
-import { NewDateFormComponent } from './components/subjects/new-date-form/new-date-form.component';
 
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -37,7 +44,8 @@ import { NewDateFormComponent } from './components/subjects/new-date-form/new-da
     StatisticsPageComponent,
     SubjectFormComponent,
     SubjectTableComponent,
-    NewDateFormComponent
+    NewDateFormComponent,
+    LanguageSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,14 @@ import { NewDateFormComponent } from './components/subjects/new-date-form/new-da
     HttpClientModule,
     SharedModule,
     ReduxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
