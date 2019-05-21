@@ -1,8 +1,8 @@
 .dropdown__btn {
-  background-color: black;
-  color: rgb(119, 119, 119);
   padding: 10px;
   border: none;
+  background-color: black;
+  color: rgb(119, 119, 119);
   cursor: pointer;
 }
 
@@ -30,10 +30,10 @@
 }
 
 .dropdown__content a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
   display: block;
+  padding: 12px 16px;
+  color: white;
+  text-decoration: none;
 }
 
 .dropdown__content a:hover {

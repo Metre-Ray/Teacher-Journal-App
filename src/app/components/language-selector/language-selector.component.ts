@@ -32,7 +32,7 @@ export class LanguageSelectorComponent implements OnInit {
     return this.languages.find((el) => el[0] === searchLang)[1];
   }
 
-  @HostListener('mouseleave') omMouseOver() {
+  @HostListener('mouseleave') omMouseLeave() {
     if (this.flag) { this.flag = !this.flag; }
   }
 }
