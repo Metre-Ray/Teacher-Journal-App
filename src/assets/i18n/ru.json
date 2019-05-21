@@ -1,0 +1,56 @@
+{
+  "title": "Журнал учителя",
+  "save": "Сохранить",
+  "close": "Закрыть",
+  "add": "Добавить",
+  "panel": {
+    "button1": "Студенты",
+    "button2": "Предметы",
+    "button3": "Статистика",
+    "button4": "Экспорт"
+  },
+  "studentPage": {
+    "table": {
+      "head1": "Индекс",
+      "head2": "Имя",
+      "head3": "Фамилия",
+      "head4": "Адрес",
+      "head5": "Описание"
+    },
+    "form": {
+      "purpose": "Добавить нового студента",
+      "name": "* Имя",
+      "surname": "* Фамилия",
+      "address": "Адрес",
+      "description": "Описание",
+      "add": "Добавить",
+      "placeholder1": "Джек",
+      "placeholder2": "Блэк",
+      "placeholder3": "Жукова, 29",
+      "placeholder4": "Пикантные подробности"
+    }
+  },
+  "subjectPage": {
+    "table": {
+      "head1": "Индекс",
+      "head2": "Имя",
+      "head3": "Фамилия",
+      "head4": "Средняя оценка"
+    },
+    "form": {
+      "purpose": "Добавить новый предмет",
+      "name": "* Имя",
+      "teacher": "* Учитель: Имя Фамилия",
+      "room": "Комната",
+      "description": "Описание",
+      "add": "Добавить",
+      "placeholder1": "Физика",
+      "placeholder2": "Иван Маск",
+      "placeholder3": "666",
+      "placeholder4": "Описание"
+    },
+    "newDateForm": {
+      "description": "Добавить новую дату"
+    }
+  }
+}

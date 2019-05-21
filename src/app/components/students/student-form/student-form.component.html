@@ -1,14 +1,15 @@
-<p>Add new student: </p>
+<p>{{'studentPage.form.purpose' | translate}}: </p>
 <div class="mcontainer">
   <app-form
-    [label1]="'* Name'"
-    [label2]="'* Surname'"
-    [label3]="'Address'"
-    [label4]="'Description'"
-    [place1]="'Jack'"
-    [place2]="'Black'"
-    [place3]="'Zhukova, 29'"
-    [place4]="'Juicy details'"
+    [label1]="'studentPage.form.name' | translate"
+    [label2]="'studentPage.form.surname' | translate"
+    [label3]="'studentPage.form.address' | translate"
+    [label4]="'studentPage.form.description' | translate"
+    [place1]="'studentPage.form.placeholder1' | translate"
+    [place2]="'studentPage.form.placeholder2' | translate"
+    [place3]="'studentPage.form.placeholder3' | translate"
+    [place4]="'studentPage.form.placeholder4' | translate"
+    [buttonEntrails]="'add' | translate"
     (submitted)="onSubmit($event)">
   </app-form>
 </div>

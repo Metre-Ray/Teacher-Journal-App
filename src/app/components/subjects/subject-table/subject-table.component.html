@@ -2,10 +2,10 @@
   <caption>Table of student marks</caption>
   <thead>
     <tr>
-      <th>Index</th>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Average mark</th>
+      <th>{{'subjectPage.table.head1' | translate}}</th>
+      <th>{{'subjectPage.table.head2' | translate}}</th>
+      <th>{{'subjectPage.table.head3' | translate}}</th>
+      <th>{{'subjectPage.table.head4' | translate}}</th>
       <th *ngFor="let date of dates">{{ date | date }}</th>
     </tr>
   </thead>

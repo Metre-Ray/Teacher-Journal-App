@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   @Input() place2: string;
   @Input() place3: string;
   @Input() place4: string;
+  @Input() buttonEntrails: string;
   @Output() submitted = new EventEmitter();
   form = new FormGroup({
     value0: new FormControl('', Validators.required),
