@@ -1,0 +1,6 @@
+<div class="table-container">
+  <app-student-table [students]="students$ | async | sort:'Last name'"></app-student-table>
+</div>
+<div class="buttons-container">
+  <app-round-button [routerLink]="'form'"><span>+</span></app-round-button>
+</div>
