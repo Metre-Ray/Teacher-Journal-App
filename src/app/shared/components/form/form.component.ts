@@ -8,36 +8,34 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
-  @Input() label1: string;
-  @Input() label2: string;
-  @Input() label3: string;
-  @Input() label4: string;
-  @Input() place1: string;
-  @Input() place2: string;
-  @Input() place3: string;
-  @Input() place4: string;
+  @Input() labels: string[] = [];
+  @Input() placeholders: string[] = [];
+  @Input() required: boolean[] = [];
   @Input() buttonEntrails: string;
   @Output() submitted = new EventEmitter();
-  form = new FormGroup({
-    value0: new FormControl('', Validators.required),
-    value1: new FormControl('', Validators.required),
-    value2: new FormControl(''),
-    value3: new FormControl('')
-  });
+  resetValues = {};
+  form = new FormGroup({});
 
   constructor() { }
 
   ngOnInit() {
+    this.addInputs();
   }
 
   onSubmit(event) {
     event.preventDefault();
     this.submitted.emit(this.form.value);
-    this.form.setValue({
-      value0: '',
-      value1: '',
-      value2: '',
-      value3: ''
+    this.form.reset(this.resetValues);
+  }
+
+  addInputs() {
+    this.labels.forEach((label, index) => {
+      this.resetValues[`value${index}`] = '';
+      if (!this.required[index]) {
+        this.form.addControl(`value${index}`, new FormControl(''));
+      } else {
+        this.form.addControl(`value${index}`, new FormControl('', Validators.required));
+      }
     });
   }
 }

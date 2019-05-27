@@ -3,16 +3,17 @@
 input, textarea {
   border-color: rgb(80, 89, 131);
   color: white;
+
+  &:focus {
+    color: white;
+  }
 }
 
-input:focus, textarea:focus {
-  color: white;
+button:hover {
+  background: #007bff;
 }
 
 .btn-container {
   text-align: center;
 }
 
-button:hover {
-  background: #007bff;
-}
