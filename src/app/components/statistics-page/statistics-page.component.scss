@@ -1,36 +1,50 @@
-div {
-  border: 1px solid white;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
 li {
   margin: 0;
   padding: 5px;
-  border: 1px solid white;
-  text-align: center;
   cursor: pointer;
+
+  &:hover {
+    background: rgb(52, 64, 80);
+  }
 }
+
+button {
+  min-width: 80px;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgb(102, 102, 102);
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+
+  &:hover {
+    background: rgb(139, 139, 139);
+  }
+
+  &:active {
+    background-color: rgb(190, 190, 190);
+  }
+}
+
 
 .mcontainer {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
 
-.block {
+.button-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(100px, auto));
 }
 
-.block > div {
-  text-align: center;
-  cursor: pointer;
+.statistics-container {
+  margin: 10px;
+  height: 70vh;
 }
 
-.block > div:hover, li:hover {
-  color: rgb(179, 214, 255);
+.panel-container {
+  border: 1px dashed rgba(98, 210, 255, 0.514);
 }

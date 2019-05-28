@@ -1,0 +1,174 @@
+$max-width: 400px;
+$background: #1f1f1f;
+
+form {
+  padding-left: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+}
+
+label {
+  margin-left: 5px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  max-width: $max-width;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+}
+
+.top-container {
+  padding: 2px;
+  border: 1px solid grey;
+}
+
+.top-container__input {
+  height: 20px;
+  width: calc(100% - 22px);
+  margin: 0;
+  padding: 1px;
+  padding-left: 5px;
+  background-color: $background;
+  border: none;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.top-container__btn {
+  height: 20px;
+  margin-left: 3px;
+  padding: 0;
+  border: none;
+  background: rgb(80, 80, 80);
+  color: rgb(182, 182, 182);
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: white;
+  }
+
+  span {
+    margin: 0 5px;
+  }
+}
+
+.content-container {
+
+  $check-color: rgb(119, 156, 255);
+
+  display: block;
+  position: absolute;
+  width: 100%;
+  min-width: 200px;
+  max-width: $max-width;
+  z-index: 1;
+  background-color: $background;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  .checkbox-container {
+    padding-left: 15px;
+    padding-top: 5px;
+
+    .group {
+      position: relative;
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 3px;
+    left: -12px;
+    height: 12px;
+    width: 12px;
+    border: 1px solid grey;
+    background-color: black;
+
+    &:after {
+      content: "\002713";
+      display: none;
+      position: absolute;
+      left: 1px;
+      top: -3px;
+      width: 3px;
+      height: 6px;
+      font-size: 0.8em;
+      color: $check-color;
+    }
+  }
+
+  input:checked ~ label .checkmark:after {
+    display: block;
+  }
+
+  .top-group > label .checkmark:after {
+    content: "";
+    display: none;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 6px;
+    height: 6px;
+    background-color: $check-color;
+  }
+
+  .top-group > input:checked ~ label .checkmark:after {
+    display: block;
+  }
+
+  .top-group > label .checkmark:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -15px;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 3px 0 3px;
+    border-color: rgb(190, 190, 190) transparent transparent transparent;
+    transform: rotate(-90deg);
+  }
+
+  .top-group > input:checked ~ label .checkmark:before {
+    transform: rotate(0);
+  }
+
+}
+
+.head-container, .foot-container {
+  padding: 5px;
+  background-color: #444444;
+  font-size: 0.6rem;
+
+  span {
+    margin: 5px;
+    color: rgb(155, 155, 155);
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
