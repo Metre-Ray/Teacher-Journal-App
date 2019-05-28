@@ -1,15 +1,16 @@
 <p>{{'subjectPage.form.purpose' | translate}}: </p>
 <div class="mcontainer">
   <app-form
-    [label1]="'subjectPage.form.name' | translate"
-    [label2]="'subjectPage.form.teacher' | translate"
-    [label3]="'subjectPage.form.room' | translate"
-    [label4]="'subjectPage.form.description' | translate"
-    [place1]="'subjectPage.form.placeholder1' | translate"
-    [place2]="'subjectPage.form.placeholder2' | translate"
-    [place3]="'subjectPage.form.placeholder3' | translate"
-    [place4]="'subjectPage.form.placeholder4' | translate"
+    [labels] = "['subjectPage.form.name' | translate,
+      'subjectPage.form.teacher' | translate,
+      'subjectPage.form.room' | translate,
+      'subjectPage.form.description' | translate]"
+    [placeholders] = "['subjectPage.form.placeholder1' | translate,
+      'subjectPage.form.placeholder2' | translate,
+      'subjectPage.form.placeholder3' | translate,
+      'subjectPage.form.placeholder4' | translate]"
     [buttonEntrails]="'add' | translate"
+    [required]="[true, true, false, false]"
     (submitted)="onSubmit($event)">
   </app-form>
 </div>

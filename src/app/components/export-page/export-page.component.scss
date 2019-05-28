@@ -14,10 +14,10 @@
   font-size: 120px;
   cursor: pointer;
   transition: all 0.2s linear;
-}
 
-.mcontainer > div:hover {
-  background: rgb(63, 63, 63);
+  &:hover {
+    background: rgb(63, 63, 63);
+  }
 }
 
 .fa-file-pdf {
