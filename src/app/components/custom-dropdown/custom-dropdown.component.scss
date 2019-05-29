@@ -172,3 +172,16 @@ label {
   }
 }
 
+.foot-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  span {
+    display: inline-block;
+  }
+
+  & &__close-btn {
+    text-align: end;
+  }
+}
+

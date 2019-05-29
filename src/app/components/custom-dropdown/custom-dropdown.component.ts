@@ -26,7 +26,7 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
       const newGroup = this.createSubjectGroup();
       this.values2[index].forEach(() => {
         const newControl = this.fb.control(false);
-        (newGroup.get('dates') as FormArray).push(newControl);
+        (newGroup.get('subarray') as FormArray).push(newControl);
       });
       (this.form.get('top_array') as FormArray).push(newGroup);
     });
@@ -38,8 +38,8 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
       .subscribe((value) => {
         const result = [];
         value.top_array.forEach((item, i) => {
-          item.dates.forEach((date, j) => {
-            if (date === true) {
+          item.subarray.forEach((val, j) => {
+            if (val === true) {
               const temp1 = this.values1[i];
               const temp2 = this.values2[i][j];
               result.push([temp1, temp2]);
@@ -53,8 +53,8 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
 
   createSubjectGroup() {
     return this.fb.group({
-      subject: this.fb.control(false),
-      dates: this.fb.array([])
+      name: this.fb.control(false),
+      subarray: this.fb.array([])
     });
   }
 
@@ -65,15 +65,15 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
   checkAll(value: boolean) {
     const arr = (this.form.get('top_array') as FormArray).controls;
     for (const element of arr) {
-      element.get('subject').setValue(value);
-      (element.get('dates') as FormArray).controls
+      element.get('name').setValue(value);
+      (element.get('subarray') as FormArray).controls
         .forEach((item) => item.setValue(value));
     }
   }
 
   expandAll(value: boolean) {
     (this.form.get('top_array') as FormArray).controls
-      .forEach((element) => element.get('subject').setValue(value));
+      .forEach((element) => element.get('name').setValue(value));
   }
 
 }
