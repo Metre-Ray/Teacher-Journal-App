@@ -25,16 +25,16 @@
           [formGroupName]="i"
           class="group top-group">
 
-          <input type="checkbox" name="" id="{{value}}" formControlName="subject">
+          <input type="checkbox" name="" id="{{value}}" formControlName="name">
           <label for="{{value}}">
             <span class="checkmark"></span>
             {{value}}
           </label>
 
           <ul
-            formArrayName="dates"
+            formArrayName="subarray"
             class="checkbox-container"
-            *ngIf="form.get('top_array').controls[i].get('subject').value">
+            *ngIf="form.get('top_array').controls[i].get('name').value">
 
             <li
               *ngFor="let date of values2[i]; let j = index"
@@ -52,8 +52,13 @@
     </form>
 
     <div class="foot-container">
-      <span (click)="expandAll(true)">EXPAND ALL</span>
-      <span (click)="expandAll(false)">COLLAPSE ALL</span>
+      <div>
+        <span (click)="expandAll(true)">EXPAND ALL</span>
+        <span (click)="expandAll(false)">COLLAPSE ALL</span>
+      </div>
+      <div class="foot-container__close-btn">
+        <span (click)="toggleDropDown()">CLOSE</span>
+      </div>
     </div>
 
   </div>
