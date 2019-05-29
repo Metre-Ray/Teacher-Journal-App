@@ -13,8 +13,5 @@
       "app",
       "kebab-case"
     ]
-  },
-  "no-any": [true, {"ignore-rest-args": true}],
-  "no-magic-numbers": true
-  // "no-console": [true, "log", "error"]
+  }
 }
