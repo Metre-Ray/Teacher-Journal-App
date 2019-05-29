@@ -1,0 +1,13 @@
+.wrapper {
+  position: fixed;
+  left: 100%;
+  top: 0;
+  width: 40%;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(81, 94, 112, 0.945);
+  transform: translateX(-100%);
+}

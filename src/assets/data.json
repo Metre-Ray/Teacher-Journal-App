@@ -9,19 +9,16 @@
       "Description": "Lorem consequat laboris mollit eiusmod adipisicing consectetur sint laborum cupidatat ipsum ad sit cillum aute",
       "Marks": {
         "Maths": {
-          "2018-02-06": 3,
           "2018-03-06": 1,
           "2018-04-06": 10
         },
         "Biology": {
           "2018-02-06": 4,
-          "2018-03-06": 9,
           "2018-04-06": 6
         },
         "Russian Language": {
           "2018-02-06": 6,
-          "2018-03-06": 7,
-          "2018-04-06": 4
+          "2018-03-06": 7
         }
       }
     },
