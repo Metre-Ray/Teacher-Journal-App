@@ -22,14 +22,16 @@ export class LanguageSelectorComponent implements OnInit {
     this.flag = !this.flag;
   }
 
-  onItemClick(event, lang) {
+  onItemClick(event: Event, lang: string) {
     event.preventDefault();
     this.translate.use(lang);
     this.label = this.searchLabel(this.translate.currentLang);
   }
 
-  searchLabel(searchLang) {
-    return this.languages.find((el) => el[0] === searchLang)[1];
+  searchLabel(searchLang: string) {
+    return searchLang
+      ? this.languages.find((el) => el[0] === searchLang)[1]
+      : '';
   }
 
   @HostListener('mouseleave') omMouseLeave() {
