@@ -12,6 +12,7 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
   @Output() selected = new EventEmitter();
   @Input() values1: string[] = [];
   @Input() values2: string[][] = [];
+  @Input() asDates = true;
 
   form = this.fb.group({
     top_array: this.fb.array([])
@@ -63,8 +64,8 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
   }
 
   checkAll(value: boolean) {
-    const arr = (this.form.get('top_array') as FormArray).controls;
-    for (const element of arr) {
+    const groups = (this.form.get('top_array') as FormArray).controls;
+    for (const element of groups) {
       element.get('name').setValue(value);
       (element.get('subarray') as FormArray).controls
         .forEach((item) => item.setValue(value));

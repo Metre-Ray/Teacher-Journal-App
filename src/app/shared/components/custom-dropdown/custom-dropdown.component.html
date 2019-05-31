@@ -40,9 +40,13 @@
               *ngFor="let date of values2[i]; let j = index"
               class="group">
               <input type="checkbox" name="" id="{{value+date}}" [formControlName]="j">
-              <label for="{{value+date}}">
+              <label for="{{value+date}}" *ngIf="asDates">
                 <span class="checkmark"></span>
                 {{date | date:'d/M/yyyy'}}
+              </label>
+              <label for="{{value+date}}" *ngIf="!asDates">
+                <span class="checkmark"></span>
+                {{date}}
               </label>
             </li>
           </ul>

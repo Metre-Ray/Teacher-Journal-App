@@ -24,7 +24,7 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
 
 import { SharedModule } from './shared/shared.module';
 import { ReduxModule } from './redux/redux.module';
-import { CustomDropdownComponent } from './components/custom-dropdown/custom-dropdown.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SubjectTableComponent,
     NewDateFormComponent,
     LanguageSelectorComponent,
-    CustomDropdownComponent
+    ChartComponent
   ],
   imports: [
     BrowserModule,
