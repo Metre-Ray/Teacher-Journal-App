@@ -1,0 +1,16 @@
+<p>{{'subjectPage.form.purpose' | translate}}: </p>
+<div class="mcontainer">
+  <app-form
+    [labels] = "['subjectPage.form.name' | translate,
+      'subjectPage.form.teacher' | translate,
+      'subjectPage.form.room' | translate,
+      'subjectPage.form.description' | translate]"
+    [placeholders] = "['subjectPage.form.placeholder1' | translate,
+      'subjectPage.form.placeholder2' | translate,
+      'subjectPage.form.placeholder3' | translate,
+      'subjectPage.form.placeholder4' | translate]"
+    [buttonEntrails]="'add' | translate"
+    [required]="[true, true, false, false]"
+    (submitted)="onSubmit($event)">
+  </app-form>
+</div>

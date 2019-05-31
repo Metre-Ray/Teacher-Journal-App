@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button (click)="showMenu()" class="dropdown__btn">
+    <span class="fas fa-globe"></span>
+    {{label}}
+    <span class="fas fa-angle-down"></span>
+  </button>
+  <div class="dropdown__content" *ngIf="flag">
+    <a href="#" *ngFor="let lang of languages" (click)="onItemClick($event, lang[0])">{{lang[1]}}</a>
+  </div>
+</div>

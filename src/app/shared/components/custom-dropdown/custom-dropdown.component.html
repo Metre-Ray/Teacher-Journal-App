@@ -1,0 +1,71 @@
+<div class="dropdown">
+
+  <div class="top-container">
+    <input type="text" class="top-container__input" [formControl]="inputControl">
+    <button (click)="toggleDropDown()" class="top-container__btn">
+      <span class="fas fa-angle-down"></span>
+    </button>
+  </div>
+
+  <div class="content-container" *ngIf="flag">
+
+    <div class="head-container">
+      <span (click)="checkAll(true)">CHECK ALL</span>
+      <span (click)="checkAll(false)">UNCHECK ALL</span>
+    </div>
+
+    <form action="" [formGroup]="form">
+      <ul
+        *ngIf="values1"
+        formArrayName="top_array"
+        class="checkbox-container">
+
+        <li
+          *ngFor="let value of values1; let i = index"
+          [formGroupName]="i"
+          class="group top-group">
+
+          <input type="checkbox" name="" id="{{value}}" formControlName="name">
+          <label for="{{value}}">
+            <span class="checkmark"></span>
+            {{value}}
+          </label>
+
+          <ul
+            formArrayName="subarray"
+            class="checkbox-container"
+            *ngIf="form.get('top_array').controls[i].get('name').value">
+
+            <li
+              *ngFor="let date of values2[i]; let j = index"
+              class="group">
+              <input type="checkbox" name="" id="{{value+date}}" [formControlName]="j">
+              <label for="{{value+date}}" *ngIf="asDates">
+                <span class="checkmark"></span>
+                {{date | date:'d/M/yyyy'}}
+              </label>
+              <label for="{{value+date}}" *ngIf="!asDates">
+                <span class="checkmark"></span>
+                {{date}}
+              </label>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </form>
+
+    <div class="foot-container">
+      <div>
+        <span (click)="expandAll(true)">EXPAND ALL</span>
+        <span (click)="expandAll(false)">COLLAPSE ALL</span>
+      </div>
+      <div class="foot-container__close-btn">
+        <span (click)="toggleDropDown()">CLOSE</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

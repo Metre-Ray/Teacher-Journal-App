@@ -1,0 +1,32 @@
+<app-custom-dropdown
+  [values1]="subjectNames"
+  [values2]="dates"
+  (selected)="onDropdownSelect($event)">
+</app-custom-dropdown>
+<div class="mcontainer">
+  <div class="panel-container">
+    <div class="button-container">
+      <button (click)="chooseList('students')">Students</button>
+      <button (click)="chooseList('subjects')">Subjects</button>
+    </div>
+    <div class="list-container">
+      <ol *ngIf="listName === 'students'">
+        <li
+          *ngFor="let student of currentStudents | sort:'Last name'"
+          (click)="showStatistics(student)">
+          {{student.Name + ' ' + student['Last name']}}
+        </li>
+      </ol>
+      <ol *ngIf="listName === 'subjects'">
+        <li
+          *ngFor="let subject of subjects$ | async | sort:'Name'"
+          (click)="showStatistics(subject)">
+          {{subject.Name}}
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="statistics-container">
+    Statistics
+  </div>
+</div>
