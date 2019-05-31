@@ -1,6 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 
 import { PanelComponent } from './panel.component';
+import { Pipe, PipeTransform } from '@angular/core';
+
+// tslint:disable: no-any
+@Pipe({
+  name: 'translate'
+})
+export class TranslatePipe implements PipeTransform {
+  transform(value: any): any {
+    return value;
+  }
+}
 
 describe('PanelComponent', () => {
   let component: PanelComponent;
@@ -8,7 +20,11 @@ describe('PanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PanelComponent ]
+      declarations: [
+        PanelComponent,
+        TranslatePipe
+      ],
+      imports: [ RouterModule.forRoot([]) ]
     })
     .compileComponents();
   }));

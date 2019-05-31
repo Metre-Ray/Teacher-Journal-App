@@ -1,6 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LanguageSelectorComponent } from './language-selector.component';
+import { TranslateService } from '@ngx-translate/core';
+
+
+class MockTranslateService {
+  static use() {}
+  static setDefaultLang() {}
+  static addLangs() {}
+}
+
 
 describe('LanguageSelectorComponent', () => {
   let component: LanguageSelectorComponent;
@@ -8,7 +17,9 @@ describe('LanguageSelectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LanguageSelectorComponent ]
+      declarations: [ LanguageSelectorComponent ],
+      imports: [],
+      providers: [{ provide: TranslateService, useValue: MockTranslateService }]
     })
     .compileComponents();
   }));

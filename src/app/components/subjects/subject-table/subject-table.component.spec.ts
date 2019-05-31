@@ -1,6 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SubjectTableComponent } from './subject-table.component';
+import { Pipe, PipeTransform } from '@angular/core';
+import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
+
+@Pipe({
+  name: 'translate'
+})
+class TranslatePipe implements PipeTransform {
+  // tslint:disable-next-line: no-any
+  transform(value: any): any {
+    return value;
+  }
+}
 
 describe('SubjectTableComponent', () => {
   let component: SubjectTableComponent;
@@ -8,7 +20,11 @@ describe('SubjectTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubjectTableComponent ]
+      declarations: [
+        SubjectTableComponent,
+        TranslatePipe,
+        SortPipe
+      ]
     })
     .compileComponents();
   }));
