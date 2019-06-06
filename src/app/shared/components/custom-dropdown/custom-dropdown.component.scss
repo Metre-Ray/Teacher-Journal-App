@@ -1,5 +1,6 @@
 $max-width: 400px;
 $background: #1f1f1f;
+$check-color: rgb(119, 156, 255);
 
 form {
   padding-left: 10px;
@@ -68,9 +69,6 @@ label {
 }
 
 .content-container {
-
-  $check-color: rgb(119, 156, 255);
-
   display: block;
   position: absolute;
   width: 100%;
