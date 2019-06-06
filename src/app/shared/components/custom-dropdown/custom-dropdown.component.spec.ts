@@ -23,6 +23,7 @@ describe('CustomDropdownComponent', () => {
     const values2 = [['a', 'b', 'v'], ['a', 'b', 'v'], ['a', 'b', 'v'], ['a', 'b', 'v']];
     component.values1 = values1;
     component.values2 = values2;
+    component.ngOnChanges();
   });
 
   it('should create', () => {
@@ -30,14 +31,12 @@ describe('CustomDropdownComponent', () => {
   });
 
   it('should create right amount of controls', () => {
-    component.ngOnChanges();
     fixture.detectChanges();
     expect(component.form.value.top_array.length).toEqual(4);
     expect(component.form.value.top_array[0].subarray.length).toEqual(3);
   });
 
   it('should create one input by default', () => {
-    component.ngOnChanges();
     fixture.detectChanges();
     const elem = fixture.nativeElement;
     const groups = elem.querySelectorAll('input');
@@ -45,7 +44,6 @@ describe('CustomDropdownComponent', () => {
   });
 
   it('check overall amount of inputs', () => {
-    component.ngOnChanges();
     component.flag = true;
     component.asDates = false;
     fixture.detectChanges();
@@ -58,4 +56,29 @@ describe('CustomDropdownComponent', () => {
     const groups2 = elem.querySelectorAll('input');
     expect(groups2.length).toEqual(1 + 4 + 4 * 3);
   });
+
+  it('check dropdown button', () => {
+    const btn = fixture.nativeElement.querySelector('.top-container__btn');
+    let checkboxContainer = fixture.nativeElement.querySelector('.content-container');
+    expect(checkboxContainer).toBe(null);
+
+    btn.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    checkboxContainer = fixture.nativeElement.querySelector('.content-container');
+    expect(checkboxContainer).toBeTruthy();
+  });
+
+  it('check checkAll button', () => {
+    component.flag = true;
+    component.asDates = false;
+    fixture.detectChanges();
+    const btn = fixture.nativeElement.querySelector('.head-container span');
+    btn.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    const inputs = fixture.nativeElement.querySelectorAll('.content-container input');
+    inputs.forEach(element => {
+      expect(element.checked).toBe(true);
+    });
+  });
+
 });
