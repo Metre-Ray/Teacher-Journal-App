@@ -7,6 +7,7 @@ import { RoundButtonComponent } from './components/round-button/round-button.com
 import { ToggleClassDirective } from './directives/toggleClass.directive';
 import { SortPipe } from './pipes/sort.pipe';
 import { CustomDropdownComponent } from './components/custom-dropdown/custom-dropdown.component';
+import { PopUpComponent } from './components/pop-up/pop-up.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CustomDropdownComponent } from './components/custom-dropdown/custom-dro
     RoundButtonComponent,
     ToggleClassDirective,
     SortPipe,
-    CustomDropdownComponent
+    CustomDropdownComponent,
+    PopUpComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -27,6 +29,9 @@ import { CustomDropdownComponent } from './components/custom-dropdown/custom-dro
     ToggleClassDirective,
     SortPipe,
     CustomDropdownComponent
+  ],
+  entryComponents: [
+    PopUpComponent
   ]
 })
 export class SharedModule { }

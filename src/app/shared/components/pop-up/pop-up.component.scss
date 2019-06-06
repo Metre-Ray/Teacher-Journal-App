@@ -1,0 +1,41 @@
+@keyframes MOVE_FROM_TOP {
+  0% {
+    transform: translateY(-100%) translateX(-100%);
+  }
+  100% {
+    transform: translateY(0) translateX(-100%);
+  }
+}
+
+.main-container {
+  position: fixed;
+  left: 100%;
+  top: 0;
+  width: 20%;
+  min-width: 100px;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgb(194, 194, 194);
+  text-align: center;
+  transform: translateX(-100%);
+  animation: MOVE_FROM_TOP 0.5s linear;
+  font-size: 1rem;
+
+  h3 {
+    font-size: 1em;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+}
+
+.success {
+  background-color: rgba(73, 121, 0, 0.856);
+}
+
+.failed {
+  background-color: rgba(145, 46, 0, 0.836);
+}
+

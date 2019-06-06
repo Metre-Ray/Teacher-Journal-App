@@ -6,6 +6,8 @@ import { FormComponent } from '../../../shared/components/form/form.component';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { Actions } from '@ngrx/effects';
 
 // tslint:disable: no-any
 @Pipe({
@@ -21,6 +23,8 @@ const MockStore = {
   dispatch: () => {}
 };
 
+const MockActions = of({});
+
 describe('StudentFormComponent', () => {
   let component: StudentFormComponent;
   let fixture: ComponentFixture<StudentFormComponent>;
@@ -35,7 +39,10 @@ describe('StudentFormComponent', () => {
       imports: [
         ReactiveFormsModule
       ],
-      providers:    [ { provide: Store, useValue: MockStore } ]
+      providers:    [
+        { provide: Store, useValue: MockStore },
+        { provide: Actions, useValue: MockActions }
+      ]
     })
     .compileComponents();
   }));
