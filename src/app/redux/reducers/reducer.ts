@@ -2,17 +2,9 @@ import { ActionTypes, ActionsUnion } from '../actions/actions';
 import { Student } from '../../common/entities/student';
 import { Subject } from '../../common/entities/subject';
 import { cloneObject } from 'src/app/common/helpers/deepCopy';
+import { IState, initialState } from '../state';
 
 
-export interface IState {
-  students: Student[];
-  subjects: Subject[];
-}
-
-export const initialState: IState = {
-  students: [],
-  subjects: []
-};
 
 export function Reducer(state = initialState, action: ActionsUnion): IState {
   switch (action.type) {

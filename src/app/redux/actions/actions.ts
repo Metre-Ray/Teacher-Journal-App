@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IState } from '../reducers/reducer';
+import { IState } from '../state';
 
 export enum ActionTypes {
   AddStudent = '[StudentForm Component] AddStudent',
