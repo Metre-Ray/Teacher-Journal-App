@@ -1,18 +1,20 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-custom-dropdown',
   templateUrl: './custom-dropdown.component.html',
   styleUrls: ['./custom-dropdown.component.scss'],
 })
-export class CustomDropdownComponent implements OnInit, OnChanges {
+export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() selected = new EventEmitter();
   @Input() values1: string[] = [];
   @Input() values2: string[][] = [];
   @Input() asDates = true;
+  subscription: Subscription;
 
   form = this.fb.group({
     top_array: this.fb.array([])
@@ -34,7 +36,7 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.subscription = this.form.valueChanges
       .pipe(debounceTime(200))
       .subscribe((value) => {
         const result = [];
@@ -75,6 +77,10 @@ export class CustomDropdownComponent implements OnInit, OnChanges {
   expandAll(value: boolean) {
     (this.form.get('top_array') as FormArray).controls
       .forEach((element) => element.get('name').setValue(value));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
