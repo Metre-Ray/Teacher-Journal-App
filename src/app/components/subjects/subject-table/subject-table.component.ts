@@ -19,9 +19,9 @@ export class SubjectTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  calcAverageMark(student): number {
-    if (student.Marks[this.subject] === undefined) { return null; }
-    return Math.round(calcAverage(Object.values(student.Marks[this.subject])) * 10) / 10;
+  calcAverageMark(marks): number | string {
+    if (!marks || !marks[this.subject] || Object.keys(marks[this.subject] ).length === 0) { return ''; }
+    return Math.round(calcAverage(Object.values(marks[this.subject])) * 10) / 10;
   }
 
   onMarkEdit(id, date, event) {

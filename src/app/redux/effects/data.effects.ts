@@ -4,6 +4,7 @@ import { EMPTY } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { RequestDataFromServerService } from 'src/app/common/services/request-data-from-server.service';
 import { ActionTypes, LoadSuccess } from '../actions/actions';
+import { IState } from '../state';
 
 @Injectable()
 export class DataEffects {
@@ -16,7 +17,7 @@ export class DataEffects {
         .getMockData()
           .pipe(
             map(data => {
-              return new LoadSuccess(data);
+              return new LoadSuccess((data as IState));
             }),
             catchError(() => {
               return EMPTY;
