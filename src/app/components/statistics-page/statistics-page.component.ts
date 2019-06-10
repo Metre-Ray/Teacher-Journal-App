@@ -4,6 +4,13 @@ import { State } from 'src/app/redux/reducers';
 import { Observable, Subscription } from 'rxjs';
 import { Subject } from 'src/app/common/entities/subject';
 import { Student } from 'src/app/common/entities/student';
+import { calcAverage } from 'src/app/common/helpers/calculations';
+
+
+interface StatData {
+  averageMark: number | string;
+  rating: number | string;
+}
 
 @Component({
   selector: 'app-statistics-page',
@@ -18,10 +25,16 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
   subscription2: Subscription;
   students: Student[];
   subjects: Subject[];
+
   currentStudents: Student[] = [];
+  currentStudent = '';
   listName = 'students';
   dates: string[][];
   subjectNames: string[];
+  statisticsData: StatData = {
+    averageMark: '',
+    rating: ''
+  };
 
   constructor(private store: Store<State>) { }
 
@@ -37,20 +50,34 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  showStatistics(item) {    // TODO
-    if (item instanceof Student) {
-    } else if (item instanceof Subject) {
+  showStatistics(event: Event) {
+    if (!event || (event.target as HTMLElement).nodeName !== 'LI') { return; }
+    const id = (event.target as HTMLElement).getAttribute('data-studentid');
+    const item = this.currentStudents.find((student) => student.Id === id);
+    this.currentStudent = `${item.Name} ${item['Last name']}`;
+    const marks = item.Marks;
+    const averageValue =  this.calculateAverageMarkOfStudent(marks);
+    this.statisticsData.averageMark = averageValue ? averageValue : 'this student doesn\'t have marks';
+  }
+
+  calculateAverageMarkOfStudent(marks: object) {
+    let values = [];
+    for (const i in marks) {
+      if (marks.hasOwnProperty(i)) {
+        values = values.concat(Object.values((marks[i] as string[])));
+      }
     }
+    return Math.round(calcAverage(values) * 100) / 100;
   }
 
   chooseList(name: string) {
     this.listName = name;
   }
 
-  onDropdownSelect(data) {
+  onDropdownSelect(data: string[][]) {
     this.currentStudents = this.students.filter((student) => {
       for (const elem of data) {
-        if (!Object.keys(student.Marks[elem[0]]).includes(elem[1])) {
+        if (!student.Marks[elem[0]] || !Object.keys(student.Marks[elem[0]] as string).includes(elem[1])) {
           return false;
         }
       }
