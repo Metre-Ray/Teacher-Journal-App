@@ -9,6 +9,13 @@ import { Observable, Subscription } from 'rxjs';
 import { AddSubjectDate, AddDateOrMarks } from 'src/app/redux/actions/actions';
 import { FormControl } from '@angular/forms';
 
+
+interface CellData {
+  id: string;
+  date: string;
+  newContent: string;
+}
+
 @Component({
   selector: 'app-subject-marks-page',
   templateUrl: './subject-marks-page.component.html',
@@ -45,7 +52,7 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
     this.modalFlag = true;
   }
 
-  onDateSubmit(data) {
+  onDateSubmit(data: string) {
     this.modalFlag = false;
     this.store.dispatch(new AddSubjectDate({subject: this.subject, date: data}));
   }
@@ -54,12 +61,12 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
     this.modalFlag = false;
   }
 
-  save(event) {
+  save(event: Event) {
     event.preventDefault();
     this.store.dispatch(new AddDateOrMarks({subject: this.subject, values: this.newValues}));
   }
 
-  onEdit(data) {
+  onEdit(data: CellData) {
     this.newValues[data.id] = [data.date, data.newContent];
   }
 

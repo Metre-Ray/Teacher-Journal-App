@@ -34,7 +34,7 @@ export class LanguageSelectorComponent implements OnInit {
       : '';
   }
 
-  @HostListener('mouseleave') omMouseLeave() {
+  @HostListener('mouseleave') onMouseLeave() {
     if (this.flag) { this.flag = !this.flag; }
   }
 }

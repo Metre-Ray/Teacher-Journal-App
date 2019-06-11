@@ -33,7 +33,7 @@ export class StudentFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit(event) {
+  onSubmit(event: {value0: string, value1: string, value2: string, value3: string}) {
     const data = {
       name: event.value0,
       surname:  event.value1,

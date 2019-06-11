@@ -10,7 +10,7 @@ describe('RequestDataFromServerService', () => {
   }));
 
   it('should be created', () => {
-    const service: RequestDataFromServerService = TestBed.get(RequestDataFromServerService);
+    const service: RequestDataFromServerService = TestBed.get(RequestDataFromServerService) as RequestDataFromServerService;
     expect(service).toBeTruthy();
   });
 });

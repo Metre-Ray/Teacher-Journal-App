@@ -36,7 +36,7 @@ export class AddSubject implements Action {
   constructor(public payload: {
     name: string,
     teacher: string,
-    room: number,
+    room: string,
     description: string
   }) {}
 }

@@ -6,11 +6,11 @@ export class Subject {
   Name: string;
   TeacherName: string;
   TeacherSurname: string;
-  Room: number;
+  Room: number | string;
   Description: string;
   Dates: string[];
 
-  constructor(Name: string, Teacher: string,  Room: number, Description: string = '', Dates = []) {
+  constructor(Name: string, Teacher: string,  Room: number | string, Description: string = '', Dates = []) {
     this.Id =  genId();
     const temp = Teacher.trim().split(' ');
     if (temp.length === 1) {

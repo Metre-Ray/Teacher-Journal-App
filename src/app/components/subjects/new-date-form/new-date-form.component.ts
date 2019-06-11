@@ -19,7 +19,7 @@ export class NewDateFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(event) {
+  onSubmit(event: Event) {
     event.preventDefault();
     this.submitted.emit(this.form.value.date);
   }

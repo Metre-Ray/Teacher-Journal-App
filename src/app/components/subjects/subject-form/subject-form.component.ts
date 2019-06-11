@@ -31,7 +31,7 @@ export class SubjectFormComponent implements OnInit {
     });
   }
 
-  onSubmit(data) {
+  onSubmit(data: {value0: string, value1: string, value2: string, value3: string}) {
     const subject = {
       name: data.value0,
       teacher: data.value1,

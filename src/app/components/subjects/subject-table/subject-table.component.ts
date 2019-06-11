@@ -19,13 +19,13 @@ export class SubjectTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  calcAverageMark(marks): number | string {
+  calcAverageMark(marks: object): number | string {
     if (!marks || !marks[this.subject] || Object.keys(marks[this.subject] ).length === 0) { return ''; }
     return Math.round(calcAverage(Object.values(marks[this.subject])) * 10) / 10;
   }
 
-  onMarkEdit(id, date, event) {
-    const newContent = event.target.textContent;
+  onMarkEdit(id: string, date: string, event: Event) {
+    const newContent = (event.target as HTMLElement).textContent;
     this.edited.emit({id, date, newContent});
   }
 

@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
     this.addInputs();
   }
 
-  onSubmit(event) {
+  onSubmit(event: Event) {
     event.preventDefault();
     this.submitted.emit(this.form.value);
     this.form.reset(this.resetValues);
