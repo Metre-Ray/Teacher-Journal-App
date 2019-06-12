@@ -25,7 +25,7 @@ export class LanguageSelectorComponent implements OnInit {
   onItemClick(event: Event, lang: string) {
     event.preventDefault();
     this.translate.use(lang);
-    this.label = this.searchLabel(this.translate.currentLang);
+    this.label = this.searchLabel(lang);
   }
 
   searchLabel(searchLang: string) {

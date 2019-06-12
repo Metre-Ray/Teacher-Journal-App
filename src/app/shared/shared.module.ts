@@ -8,6 +8,7 @@ import { ToggleClassDirective } from './directives/toggleClass.directive';
 import { SortPipe } from './pipes/sort.pipe';
 import { CustomDropdownComponent } from './components/custom-dropdown/custom-dropdown.component';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
+import { AppTranslateModule } from './app-translate/app-translate.module';
 
 
 @NgModule({
@@ -21,14 +22,16 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
   ],
   imports: [
     ReactiveFormsModule,
-    BrowserModule
+    BrowserModule,
+    AppTranslateModule
   ],
   exports: [
     FormComponent,
     RoundButtonComponent,
     ToggleClassDirective,
     SortPipe,
-    CustomDropdownComponent
+    CustomDropdownComponent,
+    AppTranslateModule
   ],
   entryComponents: [
     PopUpComponent
