@@ -5,17 +5,13 @@ import { Directive, ElementRef, Input, HostListener, Renderer2 } from '@angular/
 })
 export class ToggleClassDirective {
 
-  @Input('appToggleClass') className: string;
-  defaultName = 'clicked';
-  toggleFlag = false;
+  @Input('appToggleClass') public className: string;
+  public defaultName: string = 'clicked';
+  public toggleFlag: boolean = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @HostListener('click') onClick() {
-    this.toggle(this.className || this.defaultName);
-  }
-
-  private toggle(className: string) {
+  private toggle(className: string): void {
     if (!this.toggleFlag) {
       this.renderer.addClass(this.el.nativeElement, className);
       this.toggleFlag = true;
@@ -23,5 +19,9 @@ export class ToggleClassDirective {
       this.renderer.removeClass(this.el.nativeElement, className);
       this.toggleFlag = false;
     }
+  }
+
+  @HostListener('click') public onClick(): void {
+    this.toggle(this.className || this.defaultName);
   }
 }

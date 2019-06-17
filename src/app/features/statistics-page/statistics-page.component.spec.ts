@@ -4,18 +4,19 @@ import { StatisticsPageComponent } from './statistics-page.component';
 import { CustomDropdownComponent } from 'src/app/shared/components/custom-dropdown/custom-dropdown.component';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 class MockStore {
-  static state = {
+  public static state: object = {
     data: {
       students: [],
       subjects: []
     }
   };
 
-  static select(func) {
+  // tslint:disable-next-line: no-any
+  public static select(func: (arg0: object) => void): Observable<any> {
     return of(func(MockStore.state));
   }
 }

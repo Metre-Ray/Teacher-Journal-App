@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Student } from 'src/app/common/entities/student';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -9,12 +9,9 @@ import { State } from 'src/app/redux/reducers';
   templateUrl: './student-page.component.html',
   styleUrls: ['./student-page.component.scss']
 })
-export class StudentPageComponent implements OnInit {
+export class StudentPageComponent {
 
-  students$: Observable<Student[]> = this.store.select(state => state.data.students);
+  public students$: Observable<Student[]> = this.store.select(state => state.data.students);
 
   constructor(private store: Store<State>) { }
-
-  ngOnInit() {
-  }
 }

@@ -1,10 +1,10 @@
 <div class="wrapper">
   <div class="mcontainer">
     <div
-      *ngFor="let subject of subjects$ | async | sort:'Name'"
+      *ngFor="let subject of subjects$ | async | sort:'name'"
       class="subject"
-      [routerLink]="''+subject.Name">
-      <span>{{ subject.Name }}</span>
+      [routerLink]="''+subject.name">
+      <span>{{ subject.name }}</span>
     </div>
   </div>
   <div class="bottom-container">

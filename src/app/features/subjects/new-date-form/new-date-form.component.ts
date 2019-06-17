@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,25 +6,20 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './new-date-form.component.html',
   styleUrls: ['./new-date-form.component.scss']
 })
-export class NewDateFormComponent implements OnInit {
+export class NewDateFormComponent {
 
-  @Output() submitted = new EventEmitter();
-  @Output() closed = new EventEmitter();
-  form = new FormGroup({
+  @Output() public submitted: EventEmitter<Event> = new EventEmitter();
+  @Output() public closed: EventEmitter<Event> = new EventEmitter();
+  public form: FormGroup = new FormGroup({
     date: new FormControl('')
   });
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  onSubmit(event: Event) {
+  public onSubmit(event: Event): void {
     event.preventDefault();
     this.submitted.emit(this.form.value.date);
   }
 
-  onClose() {
+  public onClose(): void {
     this.closed.emit();
   }
 

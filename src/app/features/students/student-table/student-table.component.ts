@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Student } from '../../../common/entities/student';
 
 @Component({
@@ -6,12 +6,8 @@ import { Student } from '../../../common/entities/student';
   templateUrl: './student-table.component.html',
   styleUrls: ['./student-table.component.scss']
 })
-export class StudentTableComponent implements OnInit {
+export class StudentTableComponent {
 
-  @Input() students: Student[];
+  @Input() public students: Student[];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 }

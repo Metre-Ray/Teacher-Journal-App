@@ -6,24 +6,26 @@ import { FormComponent } from '../../../shared/components/form/form.component';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { Actions } from '@ngrx/effects';
 
 // tslint:disable: no-any
+// tslint:disable: variable-name
 @Pipe({
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  transform(value: any): any {
+  public transform(value: any): any {
     return value;
   }
 }
 
-const MockStore = {
+const MockStore: object = {
+// tslint:disable-next-line: no-empty
   dispatch: () => {}
 };
 
-const MockActions = of({});
+const MockActions: Observable<{}> = of({});
 
 describe('StudentFormComponent', () => {
   let component: StudentFormComponent;

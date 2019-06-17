@@ -9,7 +9,7 @@ import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 })
 class TranslatePipe implements PipeTransform {
   // tslint:disable-next-line: no-any
-  transform(value: any): any {
+  public transform(value: any): any {
     return value;
   }
 }

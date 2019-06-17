@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { RequestDataFromServerService } from 'src/app/common/services/request-data-from-server.service';
-import { ActionTypes, LoadSuccess } from '../actions/actions';
-import { IState } from '../state';
+import { ActionTypes, LoadDataSuccess, ActionsUnion } from '../actions/actions';
+import { IOurData } from 'src/app/common/entities/data';
 
 @Injectable()
 export class DataEffects {
 
   @Effect()
-  loadData$ = this.actions$
+  public loadData$: Observable<ActionsUnion> = this.actions$
     .pipe(
-      ofType(ActionTypes.LoadData),
+      ofType(ActionTypes.LoadDataRequest),
       switchMap((action) => this.dataService
         .getMockData()
           .pipe(
             map(data => {
-              return new LoadSuccess((data as IState));
+              return new LoadDataSuccess((data as IOurData));
             }),
             catchError(() => {
               return EMPTY;

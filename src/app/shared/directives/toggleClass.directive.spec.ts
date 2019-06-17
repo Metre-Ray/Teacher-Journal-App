@@ -1,5 +1,5 @@
 import { ToggleClassDirective } from './toggleClass.directive';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -16,7 +16,7 @@ class TestComponent { }
 describe('ToggleClassDirective', () => {
 
   let fixture: ComponentFixture<TestComponent>;
-  let elements;
+  let elements: HTMLElement[];
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('ToggleClassDirective', () => {
   });
 
   it('should have two elements with directive', () => {
-    const elementsWithDir = fixture.debugElement.queryAll(By.directive(ToggleClassDirective));
+    const elementsWithDir: DebugElement[] = fixture.debugElement.queryAll(By.directive(ToggleClassDirective));
     expect(elementsWithDir.length).toBe(2);
   });
 

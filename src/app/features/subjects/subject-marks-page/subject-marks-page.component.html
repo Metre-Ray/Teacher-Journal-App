@@ -3,7 +3,7 @@
 <div class="top-btn-container">
   <button
     class="btn btn-primary btn-add"
-    (click)="addDate()">
+    (click)="addDate(true)">
     <span>+</span>
   </button>
 </div>
@@ -11,13 +11,13 @@
 <div class="modal-container" *ngIf="modalFlag">
   <app-new-date-form
     (submitted)="onDateSubmit($event)"
-    (closed)="onModalClose()">
+    (closed)="addDate(false)">
   </app-new-date-form>
 </div>
 
 <div class="table-container" *ngIf="subject">
   <app-subject-table
-    [students]="students | sort:'Last name'"
+    [students]="students | sort:'lastName'"
     [dates]="dates" [subject]="subject"
     (edited)="onEdit($event)">
   </app-subject-table>

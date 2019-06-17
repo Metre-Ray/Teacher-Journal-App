@@ -1,28 +1,22 @@
-import { genId } from '../helpers/generateId';
 
+export interface ISubject {
+  id: string;
+  name: string;
+  teacher: string;
+  room: number | string;
+  description: string;
+  dates: string[];
+}
 
-export class Subject {
-  Id: string;
-  Name: string;
-  TeacherName: string;
-  TeacherSurname: string;
-  Room: number | string;
-  Description: string;
-  Dates: string[];
+export class Subject implements ISubject {
+  public id: string;
+  public name: string;
+  public teacher: string;
+  public room: number | string;
+  public description: string;
+  public dates: string[];
 
-  constructor(Name: string, Teacher: string,  Room: number | string, Description: string = '', Dates = []) {
-    this.Id =  genId();
-    const temp = Teacher.trim().split(' ');
-    if (temp.length === 1) {
-      this.TeacherSurname = temp[0];
-      this.TeacherName = '';
-    } else {
-      this.TeacherName = temp[0];
-      this.TeacherSurname = temp[1];
-    }
-    this.Name = Name;
-    this.Room = Room;
-    this.Description = Description;
-    this.Dates = Dates;
+  constructor(obj: ISubject) {
+    return {...this, ...obj};
   }
 }

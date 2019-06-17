@@ -10,7 +10,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  transform(value: any): any {
+  public transform(value: any): any {
     return value;
   }
 }

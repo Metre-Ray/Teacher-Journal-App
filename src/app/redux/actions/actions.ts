@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IState } from '../state';
+import { IOurData } from 'src/app/common/entities/data';
 
 export enum ActionTypes {
   AddStudent = '[StudentForm Component] AddStudent',
@@ -9,14 +9,13 @@ export enum ActionTypes {
   ChangeSubject = '[SubjectListPage Component] ChangeSubject',
   AddSubjectDate = '[SubjectMarksPage Component] AddSubjectDate',
   AddDateOrMarks = '[SubjectMarksPage Component] AddDateOrMarks',
-  LoadData = 'Load Data',
-  LoadSuccess = 'Data Loaded Success',
-  LoadFailed = 'Data Loaded Failed'
+  LoadDataRequest = 'Load Data',
+  LoadDataSuccess = 'Data Loaded Success',
+  LoadDataFailed = 'Data Loaded Failed'
 }
 
-
 export class AddStudent implements Action {
-  readonly type = ActionTypes.AddStudent;
+  public readonly type: ActionTypes.AddStudent = ActionTypes.AddStudent;
 
   constructor(public payload: {
     name: string,
@@ -27,11 +26,11 @@ export class AddStudent implements Action {
 }
 
 export class DeleteStudent implements Action {
-  readonly type = ActionTypes.DeleteStudent;
+  public readonly type: ActionTypes.DeleteStudent = ActionTypes.DeleteStudent;
 }
 
 export class AddSubject implements Action {
-  readonly type = ActionTypes.AddSubject;
+  public readonly type: ActionTypes.AddSubject = ActionTypes.AddSubject;
 
   constructor(public payload: {
     name: string,
@@ -42,25 +41,29 @@ export class AddSubject implements Action {
 }
 
 export class AddSubjectDate implements Action {
-  readonly type = ActionTypes.AddSubjectDate;
+  public readonly type: ActionTypes.AddSubjectDate = ActionTypes.AddSubjectDate;
 
   constructor(public payload: {subject: string, date: string}) {}
 }
 
 export class AddDateOrMarks implements Action {
-  readonly type = ActionTypes.AddDateOrMarks;
+  public readonly type: ActionTypes.AddDateOrMarks = ActionTypes.AddDateOrMarks;
 
   constructor(public payload: {subject: string, values: object}) {}
 }
 
-export class LoadData implements Action {
-  readonly type = ActionTypes.LoadData;
+export class LoadDataRequest implements Action {
+  public readonly type: ActionTypes.LoadDataRequest = ActionTypes.LoadDataRequest;
 }
 
-export class LoadSuccess implements Action {
-  readonly type = ActionTypes.LoadSuccess;
+export class LoadDataSuccess implements Action {
+  public readonly type: ActionTypes.LoadDataSuccess = ActionTypes.LoadDataSuccess;
 
-  constructor(public payload: IState) {}
+  constructor(public payload: IOurData) {}
 }
 
-export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | LoadData | LoadSuccess;
+export class LoadDataFailed implements Action {
+  public readonly type: ActionTypes.LoadDataFailed = ActionTypes.LoadDataFailed;
+}
+
+export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | LoadDataRequest | LoadDataSuccess | LoadDataFailed;

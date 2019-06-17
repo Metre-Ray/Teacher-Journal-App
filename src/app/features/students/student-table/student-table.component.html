@@ -12,10 +12,10 @@
   <tbody>
     <tr *ngFor="let student of students; let i=index" [appToggleClass]="'selected'">
       <td>{{i + 1}}</td>
-      <td>{{student.Name}}</td>
-      <td>{{student['Last name']}}</td>
-      <td><div class="block1">{{student.Address}}</div></td>
-      <td><div class="block2">{{student.Description}}</div></td>
+      <td>{{student.name}}</td>
+      <td>{{student.lastName}}</td>
+      <td><div class="block1">{{student.address}}</div></td>
+      <td><div class="block2">{{student.description}}</div></td>
     </tr>
   </tbody>
 </table>

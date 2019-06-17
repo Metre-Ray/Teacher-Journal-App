@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewContainerRef} from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, ComponentFactory } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { AddStudent } from 'src/app/redux/actions/actions';
@@ -7,7 +8,6 @@ import { ActionTypes } from '../../../redux/actions/actions';
 import { PopUpComponent } from 'src/app/shared/components/pop-up/pop-up.component';
 import { Subscription } from 'rxjs';
 
-
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
@@ -15,26 +15,26 @@ import { Subscription } from 'rxjs';
 })
 export class StudentFormComponent implements OnInit, OnDestroy {
 
-  @ViewChild('popUpContainer', {read: ViewContainerRef}) popUp: ViewContainerRef;
-  component: ComponentRef<PopUpComponent>;
-  subscription: Subscription;
+  @ViewChild('popUpContainer', {read: ViewContainerRef}) public popUp: ViewContainerRef;
+  public component: ComponentRef<PopUpComponent>;
+  public subscription: Subscription;
 
   constructor(private store: Store<State>, private actions$: Actions, private resolver: ComponentFactoryResolver) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.subscription = this.actions$.pipe(
       ofType(ActionTypes.AddStudent)
     )
     .subscribe(() => {
-      const title = 'Success!';
-      const text = 'New student was added';
-      const success = true;
+      const title: string = 'Success!';
+      const text: string = 'New student was added';
+      const success: boolean = true;
       this.createPopUp(title, text, success);
     });
   }
 
-  onSubmit(event: {value0: string, value1: string, value2: string, value3: string}) {
-    const data = {
+  public onSubmit(event: {value0: string, value1: string, value2: string, value3: string}): void {
+    const data: {name: string, surname: string, address: string, description: string} = {
       name: event.value0,
       surname:  event.value1,
       address: event.value2,
@@ -43,18 +43,18 @@ export class StudentFormComponent implements OnInit, OnDestroy {
     this.store.dispatch(new AddStudent(data));
   }
 
-  createPopUp(title: string, text: string, success: boolean) {
-    const factory = this.resolver.resolveComponentFactory(PopUpComponent);
+  public createPopUp(title: string, text: string, success: boolean): void {
+    const factory: ComponentFactory<PopUpComponent> = this.resolver.resolveComponentFactory(PopUpComponent);
     this.component = this.popUp.createComponent(factory);
     this.component.instance.title = title;
     this.component.instance.text = text;
     this.component.instance.success = success;
     setTimeout(() => {
       this.component.destroy();
-    }, 2000);
+    },         2000);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

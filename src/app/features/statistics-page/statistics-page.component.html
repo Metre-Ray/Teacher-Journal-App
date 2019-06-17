@@ -1,9 +1,10 @@
-<app-custom-dropdown
-  [values1]="subjectNames"
-  [values2]="dates"
-  (selected)="onDropdownSelect($event)">
-</app-custom-dropdown>
-
+<div class="dropdown-container">
+    <app-custom-dropdown
+    [values1]="subjectNames"
+    [values2]="dates"
+    (selected)="onDropdownSelect($event)">
+  </app-custom-dropdown>
+</div>
 <div class="mcontainer">
 
   <div class="panel-container">
@@ -14,15 +15,15 @@
     <div class="panel-container__list">
       <ol *ngIf="listName === 'students'" (click)="showStatistics($event)">
         <li
-          *ngFor="let student of currentStudents | sort:'Last name'"
-          attr.data-studentid = {{student.Id}}>
-          {{student.Name + ' ' + student['Last name']}}
+          *ngFor="let student of currentStudents | sort:'lastName'"
+          attr.data-studentid = {{student.id}}>
+          {{student.name + ' ' + student.lastName}}
         </li>
       </ol>
       <ol *ngIf="listName === 'subjects'" (click)="showStatistics()">
         <li
-          *ngFor="let subject of subjects$ | async | sort:'Name'">
-          {{subject.Name}}
+          *ngFor="let subject of subjects$ | async | sort:'name'">
+          {{subject.name}}
         </li>
       </ol>
     </div>

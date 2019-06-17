@@ -3,39 +3,37 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SubjectsListPageComponent } from './subjects-list-page.component';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 import { Directive, Input, HostListener } from '@angular/core';
-import { RoundButtonComponent } from 'src/app/shared/components/round-button/round-button.component';
-import { of } from 'rxjs';
+import { RoundButtonComponent } from 'src/app/shared/components/button/round-button.component';
+import { of, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-
+// tslint:disable: no-any
+// tslint:disable: no-empty
 @Directive({
   // tslint:disable-next-line: directive-selector
   selector: '[routerLink]'
 })
 export class RouterLinkDirective {
-  // tslint:disable-next-line: no-any
-  @Input('routerLink') linkParams: any;
+  @Input('routerLink') public linkParams: any;
 
   @HostListener('click')
-  onClick() {
-  }
+  public onClick(): void {}
 }
 
 class MockStore {
-  static state = {
+  public static state: { data: { students: any[]; subjects: any[]; } } = {
     data: {
       students: [],
       subjects: []
     }
   };
 
-  static dispatch() {}
+  public static dispatch(): void {}
 
-  static select(func) {
+  public static select(func: (d: any) => void): Observable<any> {
     return of(func(MockStore.state));
   }
 }
-
 
 describe('SubjectsListPageComponent', () => {
   let component: SubjectsListPageComponent;

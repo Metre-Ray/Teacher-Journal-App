@@ -7,22 +7,21 @@ import { SubjectTableComponent } from '../subject-table/subject-table.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-
 
 @Pipe({
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
   // tslint:disable-next-line: no-any
-  transform(value: any): any {
+  public transform(value: any): any {
     return value;
   }
 }
 
 class MockActivatedRoute {
-  static snapshot = {
+  public static snapshot: object = {
     paramMap: {
       get: () => ''
     }
@@ -30,16 +29,17 @@ class MockActivatedRoute {
 }
 
 class MockStore {
-  static state = {
+  public static state: object = {
     data: {
       students: [],
       subjects: []
     }
   };
 
-  static dispatch() {}
+  public static dispatch(): void {}
 
-  static select(func) {
+  // tslint:disable-next-line: no-any
+  public static select(func: (arg0: object) => void): Observable<any> {
     return of(func(MockStore.state));
   }
 }

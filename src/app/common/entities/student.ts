@@ -1,19 +1,22 @@
-import { genId } from '../helpers/generateId';
 
-export class Student {
-  Id: string;
-  Name: string;
-  'Last name': string;
-  Address: string;
-  Description: string;
-  Marks: object;
+export interface IStudent {
+  id: string;
+  name: string;
+  lastName: string;
+  address: string;
+  description: string;
+  marks: object;
+}
 
-  constructor(Name: string, Surname: string,  Address: string = '', Description: string = '', Marks = {}) {
-    this.Id =  genId();
-    this.Name = Name;
-    this['Last name'] = Surname;
-    this.Address = Address;
-    this.Description = Description;
-    this.Marks = Marks;
+export class Student implements IStudent {
+  public id: string;
+  public name: string;
+  public lastName: string;
+  public address: string;
+  public description: string;
+  public marks: object;
+
+  constructor(obj: IStudent) {
+    return {...this, ...obj};
   }
 }

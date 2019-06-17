@@ -2,11 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StudentPageComponent } from './student-page.component';
 import { Pipe, PipeTransform, Directive, Input, HostListener, Injectable } from '@angular/core';
-import { RoundButtonComponent } from 'src/app/shared/components/round-button/round-button.component';
+import { RoundButtonComponent } from 'src/app/shared/components/button/round-button.component';
 import { StudentTableComponent } from '../student-table/student-table.component';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
-
+import { of, Observable } from 'rxjs';
 
 // tslint:disable: no-any
 
@@ -14,7 +13,7 @@ import { of } from 'rxjs';
   name: 'sort'
 })
 class SortPipe implements PipeTransform {
-  transform(value: any[]) {
+  public transform(value: any[]): any[] {
     return value;
   }
 }
@@ -23,20 +22,20 @@ class SortPipe implements PipeTransform {
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  transform(value: any[]) {
+  public transform(value: any[]): any[] {
     return value;
   }
 }
 
 class MockStore {
-  static state = {
+  public static state: { data: object } = {
     data: {
       students: [],
       subjects: []
     }
   };
 
-  static select(func) {
+  public static select(func: any): Observable<any> {
     return of(func(MockStore.state));
   }
 }
@@ -46,11 +45,11 @@ class MockStore {
   selector: '[routerLink]'
 })
 class RouterLinkDirective {
-  @Input('routerLink') linkParams: any;
-  navigatedTo: any = null;
+  @Input('routerLink') public linkParams: any;
+  public navigatedTo: any = undefined;
 
   @HostListener('click')
-  onClick() {
+  public onClick(): void {
     this.navigatedTo = this.linkParams;
   }
 }
@@ -59,10 +58,8 @@ class RouterLinkDirective {
   selector: '[appToggleClass]'
 })
 class ToggleClassDirective {
-  @Input('appToggleClass') name: any;
+  @Input('appToggleClass') public name: any;
 }
-
-
 
 describe('StudentPageComponent', () => {
   let component: StudentPageComponent;

@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 import { Reducer } from './reducer';
 import { IState } from '../state';
 
-
+// tslint:disable-next-line: interface-name
 export interface State {
   data: IState;
 }
@@ -18,6 +18,5 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   data: Reducer
 };
-
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

@@ -4,11 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './root/app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SharedModule } from './shared/shared.module';
 import { ReduxModule } from './redux/redux.module';
 import { FeaturesModule } from './features/features.module';
 import { CoreModule } from './core/core.module';
-
 
 @NgModule({
   declarations: [
@@ -17,7 +15,6 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
     ReduxModule,
     FeaturesModule,
     CoreModule

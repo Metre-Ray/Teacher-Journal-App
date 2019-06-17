@@ -9,18 +9,16 @@ import { TranslateService } from '@ngx-translate/core';
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  transform(value: Array<string | object>, field?: string): Array<string | object> {
+  public transform(value: Array<string | object>, field?: string): Array<string | object> {
     return value;
   }
 }
 
 class MockTranslateService {
-  static use() {}
-  static setDefaultLang() {}
-  static addLangs() {}
+  public static use(): void {}
+  public static setDefaultLang(): void {}
+  public static addLangs(): void {}
 }
-
-
 
 describe('HeadComponent', () => {
   let component: HeadComponent;

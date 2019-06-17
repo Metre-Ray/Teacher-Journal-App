@@ -8,27 +8,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
-  @Input() labels: string[] = [];
-  @Input() placeholders: string[] = [];
-  @Input() required: boolean[] = [];
-  @Input() buttonEntrails: string;
-  @Output() submitted = new EventEmitter();
-  resetValues = {};
-  form = new FormGroup({});
+  @Input() public labels: string[] = [];
+  @Input() public placeholders: string[] = [];
+  @Input() public required: boolean[] = [];
+  @Input() public buttonEntrails: string;
+  @Output() public submitted: EventEmitter<IFormData> = new EventEmitter();
+  public resetValues: object = {};
+  public form: FormGroup = new FormGroup({});
 
-  constructor() { }
-
-  ngOnInit() {
-    this.addInputs();
-  }
-
-  onSubmit(event: Event) {
-    event.preventDefault();
-    this.submitted.emit(this.form.value);
-    this.form.reset(this.resetValues);
-  }
-
-  addInputs() {
+  private addControls(): void {
     this.labels.forEach((label, index) => {
       this.resetValues[`value${index}`] = '';
       if (!this.required[index]) {
@@ -38,4 +26,18 @@ export class FormComponent implements OnInit {
       }
     });
   }
+
+  public ngOnInit(): void {
+    this.addControls();
+  }
+
+  public onSubmit(event: Event): void {
+    event.preventDefault();
+    this.submitted.emit(this.form.value);
+    this.form.reset(this.resetValues);
+  }
+}
+
+interface IFormData {
+  value0?: string;
 }

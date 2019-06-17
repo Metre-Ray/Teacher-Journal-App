@@ -3,15 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LanguageSelectorComponent } from './language-selector.component';
 import { TranslateService } from '@ngx-translate/core';
 
-
 describe('LanguageSelectorComponent', () => {
   let component: LanguageSelectorComponent;
   let fixture: ComponentFixture<LanguageSelectorComponent>;
   let translateServiceSpy: jasmine.SpyObj<TranslateService>;
 
-
   beforeEach(async(() => {
-    const spy = jasmine.createSpyObj('TranslateService', ['use']);
+    // tslint:disable-next-line: no-any
+    const spy: any = jasmine.createSpyObj('TranslateService', ['use']);
 
     TestBed.configureTestingModule({
       declarations: [ LanguageSelectorComponent ],

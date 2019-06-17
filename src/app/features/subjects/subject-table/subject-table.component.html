@@ -12,14 +12,14 @@
   <tbody>
     <tr *ngFor="let student of students; let i=index">
       <td>{{i + 1}}</td>
-      <td>{{student.Name}}</td>
-      <td>{{student['Last name']}}</td>
-      <td>{{calcAverageMark(student.Marks)}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.lastName}}</td>
+      <td>{{calcAverageMark(student.marks)}}</td>
       <td
         contenteditable
         *ngFor="let date of dates"
-        (input)="onMarkEdit(student.Id, date, $event)">
-        {{student.Marks[subject] ? student.Marks[subject][date] : ''}}
+        (input)="onMarkEdit(student.id, date, $event)">
+        {{student.marks[subject] ? student.marks[subject][date] : ''}}
       </td>
     </tr>
   </tbody>

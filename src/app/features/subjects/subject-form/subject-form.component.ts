@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, ComponentFactory } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { AddSubject, ActionTypes } from 'src/app/redux/actions/actions';
@@ -13,26 +13,26 @@ import { ofType, Actions } from '@ngrx/effects';
 })
 export class SubjectFormComponent implements OnInit {
 
-  @ViewChild('popUpContainer', {read: ViewContainerRef}) popUp: ViewContainerRef;
-  component: ComponentRef<PopUpComponent>;
-  subscription: Subscription;
+  @ViewChild('popUpContainer', {read: ViewContainerRef}) public popUp: ViewContainerRef;
+  public component: ComponentRef<PopUpComponent>;
+  public subscription: Subscription;
 
   constructor(private store: Store<State>,  private actions$: Actions, private resolver: ComponentFactoryResolver) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.subscription = this.actions$.pipe(
       ofType(ActionTypes.AddSubject)
     )
     .subscribe(() => {
-      const title = 'Success!';
-      const text = 'New subject was added';
-      const success = true;
+      const title: string = 'Success!';
+      const text: string = 'New subject was added';
+      const success: boolean = true;
       this.createPopUp(title, text, success);
     });
   }
 
-  onSubmit(data: {value0: string, value1: string, value2: string, value3: string}) {
-    const subject = {
+  public onSubmit(data: {value0: string, value1: string, value2: string, value3: string}): void {
+    const subject: { name: string, teacher: string, room: string, description: string } = {
       name: data.value0,
       teacher: data.value1,
       room: data.value2,
@@ -41,14 +41,14 @@ export class SubjectFormComponent implements OnInit {
     this.store.dispatch(new AddSubject(subject));
   }
 
-  createPopUp(title: string, text: string, success: boolean) {
-    const factory = this.resolver.resolveComponentFactory(PopUpComponent);
+  public createPopUp(title: string, text: string, success: boolean): void {
+    const factory: ComponentFactory<PopUpComponent> = this.resolver.resolveComponentFactory(PopUpComponent);
     this.component = this.popUp.createComponent(factory);
     this.component.instance.title = title;
     this.component.instance.text = text;
     this.component.instance.success = success;
     setTimeout(() => {
       this.component.destroy();
-    }, 2000);
+    },         2000);
   }
 }

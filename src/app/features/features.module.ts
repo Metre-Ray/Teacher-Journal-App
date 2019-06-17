@@ -17,11 +17,6 @@ import { SharedModule } from '../shared/shared.module';
     SubjectsModule,
     SharedModule
   ],
-  exports: [
-    StudentsModule,
-    SubjectsModule,
-    StatisticsPageComponent,
-    ExportPageComponent
-  ]
+  exports: []
 })
 export class FeaturesModule { }

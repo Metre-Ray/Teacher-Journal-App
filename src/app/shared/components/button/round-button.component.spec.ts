@@ -32,7 +32,7 @@ describe('RoundButtonComponent', () => {
   });
 
   it('host component should contain button with +', () => {
-    const but = fixture2.nativeElement.querySelector('button');
+    const but: HTMLElement = fixture2.nativeElement.querySelector('button');
     expect(but).toBeTruthy();
     expect(but.textContent).toContain('+');
   });

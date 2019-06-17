@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HeadComponent } from '../core/head/head.component';
@@ -7,26 +7,26 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { LanguageSelectorComponent } from '../core/language-selector/language-selector.component';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-
+import { ComponentInstance } from '@angular/core/src/render3/interfaces/player';
 
 @Pipe ({
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
   // tslint:disable-next-line: no-any
-  transform(value: any[]) {
+  public transform(value: any[]): any {
     return value;
   }
 }
 
 class MockStore {
-  dispatch() {}
+  public dispatch(): void {}
 }
 
 class MockTranslateService {
-  static use() {}
-  static setDefaultLang() {}
-  static addLangs() {}
+  public static use(): void {}
+  public static setDefaultLang(): void {}
+  public static addLangs(): void {}
 }
 
 describe('AppComponent', () => {
@@ -50,8 +50,8 @@ describe('AppComponent', () => {
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+    const app: ComponentInstance = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 });

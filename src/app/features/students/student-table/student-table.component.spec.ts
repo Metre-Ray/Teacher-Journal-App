@@ -3,14 +3,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StudentTableComponent } from './student-table.component';
 import { Pipe, PipeTransform, Directive, Input } from '@angular/core';
 
-
 // tslint:disable: no-any
 
 @Pipe ({
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  transform(value: any[]) {
+  public transform(value: any[]): any[] {
     return value;
   }
 }
@@ -19,9 +18,8 @@ class TranslatePipe implements PipeTransform {
   selector: '[appToggleClass]'
 })
 class ToggleClassDirective {
-  @Input('appToggleClass') name: any;
+  @Input('appToggleClass') public name: any;
 }
-
 
 describe('StudentTableComponent', () => {
   let component: StudentTableComponent;

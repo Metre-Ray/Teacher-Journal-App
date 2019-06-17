@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '../redux/reducers';
-import { LoadData } from '../redux/actions/actions';
+import { LoadDataRequest } from '../redux/actions/actions';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -10,7 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Teacher-Journal-App';
 
   constructor(private store: Store<State>, translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
     translate.use('en');
   }
 
-  ngOnInit() {
-    this.store.dispatch(new LoadData());
+  public ngOnInit(): void {
+    this.store.dispatch(new LoadDataRequest());
   }
 }

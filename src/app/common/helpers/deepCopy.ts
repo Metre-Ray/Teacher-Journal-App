@@ -1,5 +1,5 @@
-export function cloneObject(obj: object) {
-  const clone = Array.isArray(obj) ? [] : {};
+export function cloneObject(obj: object): object {
+  const clone: object = Array.isArray(obj) ? [] : {};
   for (const i in obj) {
     if (obj[i] !== null && typeof(obj[i]) === 'object') {
       clone[i] = cloneObject(obj[i]);

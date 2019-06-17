@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FormComponent } from 'src/app/shared/components/form/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { Actions } from '@ngrx/effects';
 
 // tslint:disable: no-any
@@ -14,16 +14,16 @@ import { Actions } from '@ngrx/effects';
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  transform(value: any): any {
+  public transform(value: any): any {
     return value;
   }
 }
 
-const MockStore = {
+const mockStore: object = {
   dispatch: () => {}
 };
 
-const MockActions = of({});
+const mockActions: Observable<object> = of({});
 
 describe('SubjectFormComponent', () => {
   let component: SubjectFormComponent;
@@ -38,8 +38,8 @@ describe('SubjectFormComponent', () => {
       ],
       imports: [ ReactiveFormsModule ],
       providers: [
-        { provide: Store, useValue: MockStore },
-        { provide: Actions, useValue: MockActions }
+        { provide: Store, useValue: mockStore },
+        { provide: Actions, useValue: mockActions }
       ]
     })
     .compileComponents();
