@@ -52,5 +52,11 @@
     "newDateForm": {
       "description": "Добавить новую дату"
     }
+  },
+  "statisticsPage": {
+    "students": "Студенты",
+    "subjects": "Предметы",
+    "student": "Студент",
+    "averageMark": "Средняя оценка"
   }
 }

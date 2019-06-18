@@ -52,5 +52,11 @@
     "newDateForm": {
       "description": "Add new date"
     }
+  },
+  "statisticsPage": {
+    "students": "Students",
+    "subjects": "Subjects",
+    "student": "Student",
+    "averageMark": "Average mark"
   }
 }

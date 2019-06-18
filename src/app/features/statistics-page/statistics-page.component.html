@@ -9,8 +9,8 @@
 
   <div class="panel-container">
     <div class="panel-container__buttons">
-      <button (click)="chooseList('students')">Students</button>
-      <button (click)="chooseList('subjects')">Subjects</button>
+      <button (click)="chooseList('students')">{{'statisticsPage.students' | translate}}</button>
+      <button (click)="chooseList('subjects')">{{'statisticsPage.subjects' | translate}}</button>
     </div>
     <div class="panel-container__list">
       <ol *ngIf="listName === 'students'" (click)="showStatistics($event)">
@@ -31,8 +31,8 @@
 
   <div class="statistics-container">
     <div class="statistics-container__data">
-      <div><span>Student:</span> {{currentStudent}}</div>
-      <div><span>Average mark:</span> {{statisticsData.averageMark}}</div>
+      <div><span>{{'statisticsPage.student' | translate}}:</span> {{currentStudent}}</div>
+      <div><span>{{'statisticsPage.averageMark' | translate}}:</span> {{statisticsData.averageMark}}</div>
     </div>
   </div>
 
