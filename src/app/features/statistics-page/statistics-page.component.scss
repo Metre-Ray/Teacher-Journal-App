@@ -37,6 +37,7 @@ button {
   display: inline-block;
   width: 30%;
   min-width: 200px;
+  max-width: 400px;
   border: 1px dashed rgba(108, 98, 255, 0.514);
 
   &__buttons {
@@ -46,7 +47,7 @@ button {
 }
 
 .statistics-container {
-  width: 65%;
+  flex-grow: 1;
   font-size: 1.2rem;
   position: relative;
   text-align: center;
