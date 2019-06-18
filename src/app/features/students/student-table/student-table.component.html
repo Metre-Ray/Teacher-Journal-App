@@ -7,6 +7,7 @@
       <th>{{'studentPage.table.head3' | translate}}</th>
       <th>{{'studentPage.table.head4' | translate}}</th>
       <th>{{'studentPage.table.head5' | translate}}</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@
       <td>{{student.lastName}}</td>
       <td><div class="block1">{{student.address}}</div></td>
       <td><div class="block2">{{student.description}}</div></td>
+      <td class="remove" (click)="removeRow(student)"><span class="fas fa-times"></span></td>
     </tr>
   </tbody>
 </table>

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { IOurData } from 'src/app/common/entities/data';
+import { Student } from 'src/app/common/entities/student';
 
 export enum ActionTypes {
   AddStudent = '[StudentForm Component] AddStudent',
@@ -27,6 +28,8 @@ export class AddStudent implements Action {
 
 export class DeleteStudent implements Action {
   public readonly type: ActionTypes.DeleteStudent = ActionTypes.DeleteStudent;
+
+  constructor(public payload: Student) {}
 }
 
 export class AddSubject implements Action {
@@ -66,4 +69,5 @@ export class LoadDataFailed implements Action {
   public readonly type: ActionTypes.LoadDataFailed = ActionTypes.LoadDataFailed;
 }
 
-export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | LoadDataRequest | LoadDataSuccess | LoadDataFailed;
+export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks |
+  LoadDataRequest | LoadDataSuccess | LoadDataFailed | DeleteStudent;

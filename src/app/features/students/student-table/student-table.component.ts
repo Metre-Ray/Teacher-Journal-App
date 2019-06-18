@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Student } from '../../../common/entities/student';
 
 @Component({
@@ -9,5 +9,9 @@ import { Student } from '../../../common/entities/student';
 export class StudentTableComponent {
 
   @Input() public students: Student[];
+  @Output() public removed: EventEmitter<Student> = new EventEmitter();
 
+  public removeRow(student: Student): void {
+    this.removed.emit(student);
+  }
 }

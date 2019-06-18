@@ -1,12 +1,14 @@
-span {
-  position: relative;
-  top: -4px;
-  font-weight: bold;
-}
+@import '../../../../styles/button';
 
 .buttons-container {
   margin: 30px;
   text-align: center;
+
+  span {
+    position: relative;
+    top: -4px;
+    font-weight: bold;
+  }
 }
 
 .table-container {
@@ -14,3 +16,26 @@ span {
   overflow: auto;
 }
 
+.modal-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  min-width: 150px;
+  max-width: 300px;
+  min-height: 100px;
+  max-width: 450px;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(81, 94, 112, 0.945);
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  button {
+    margin: 10px;
+  }
+
+  span {
+    font-weight: bold;
+  }
+}

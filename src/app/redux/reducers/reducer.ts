@@ -74,6 +74,13 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
       return newState;
     }
 
+    case ActionTypes.DeleteStudent: {
+      const newState: IState = cloneObject(state) as IState;
+      const indexOfRemovedStudent: number = state.students.indexOf(action.payload);
+      if (indexOfRemovedStudent >= 0) { newState.students.splice(indexOfRemovedStudent, 1); }
+      return newState;
+    }
+
     case ActionTypes.LoadDataSuccess: {
       const newState: IState = {
         students: convertStudentDataToObjects(action.payload.students),
