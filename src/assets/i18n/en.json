@@ -58,5 +58,12 @@
     "subjects": "Subjects",
     "student": "Student",
     "averageMark": "Average mark"
+  },
+  "dropdown": {
+    "check": "CHECK ALL",
+    "uncheck": "UNCHECK ALL",
+    "expand": "EXPAND ALL",
+    "collapse": "COLLAPSE ALL",
+    "close": "CLOSE"
   }
 }

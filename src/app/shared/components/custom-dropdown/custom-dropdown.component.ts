@@ -50,6 +50,13 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
     this.selected.emit(result);
   }
 
+  private createSubjectGroup(): FormGroup {
+    return this.fb.group({
+      name: this.fb.control(false),
+      subarray: this.fb.array([])
+    });
+  }
+
   public ngOnChanges(): void {
     this.addNewGroupOfFormControls();
   }
@@ -60,13 +67,6 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe((value) => {
         this.collectResultAndEmit(value);
       });
-  }
-
-  public createSubjectGroup(): FormGroup {
-    return this.fb.group({
-      name: this.fb.control(false),
-      subarray: this.fb.array([])
-    });
   }
 
   public toggleDropDown(): void {
