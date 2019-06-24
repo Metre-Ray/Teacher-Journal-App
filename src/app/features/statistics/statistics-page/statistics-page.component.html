@@ -33,6 +33,7 @@
     <div class="statistics-container__data">
       <div><span>{{'statisticsPage.student' | translate}}:</span> {{currentStudent}}</div>
       <div><span>{{'statisticsPage.averageMark' | translate}}:</span> {{statisticsData.averageMark}}</div>
+      <app-bar-chart [data]="chartData"></app-bar-chart>
     </div>
   </div>
 

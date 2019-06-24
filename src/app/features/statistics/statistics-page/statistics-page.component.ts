@@ -34,6 +34,7 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
     averageMark: '',
     rating: ''
   };
+  public chartData: {name: string, x: number}[] = [];
 
   constructor(private store: Store<State>) { }
 
@@ -51,12 +52,22 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
 
   public showStatistics(event: Event): void {
     if (!event || (event.target as HTMLElement).nodeName !== 'LI') { return; }
-    const id: string = (event.target as HTMLElement).getAttribute('data-studentid');
+    const message: string = 'this student doesn\'t have marks';
+    const attributeName: string = 'data-studentid';
+    const id: string = (event.target as HTMLElement).getAttribute(attributeName);
     const item: Student = this.currentStudents.find((student) => student.id === id);
     this.currentStudent = `${item.name} ${item.lastName}`;
     const marks: object = item.marks;
     const averageValue: number =  this.calculateAverageMarkOfStudent(marks);
-    this.statisticsData.averageMark = averageValue ? averageValue : 'this student doesn\'t have marks';
+    this.statisticsData.averageMark = averageValue ? averageValue : message;
+    this.chartData = [];
+    // tslint:disable-next-line: forin
+    for (const subject in item.marks) {
+      this.chartData.push({
+        name: subject,
+        x: Math.round(calcAverage(Object.values(item.marks[subject])) * 100) / 100
+      });
+    }
   }
 
   public calculateAverageMarkOfStudent(marks: object): number {
