@@ -13,7 +13,7 @@ export class FormComponent implements OnInit {
   @Input() public required: boolean[] = [];
   @Input() public buttonEntrails: string;
   @Output() public submitted: EventEmitter<IFormData> = new EventEmitter();
-  public resetValues: object = {};
+  public resetValues: IFormData = {};
   public form: FormGroup = new FormGroup({});
 
   private addControls(): void {
@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
       if (!this.required[index]) {
         this.form.addControl(`value${index}`, new FormControl(''));
       } else {
-        this.form.addControl(`value${index}`, new FormControl('', Validators.required));
+        this.form.addControl(`value${index}`, new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z \'()]+$')]));
       }
     });
   }
@@ -40,4 +40,5 @@ export class FormComponent implements OnInit {
 
 interface IFormData {
   value0?: string;
+  value1?: string;
 }

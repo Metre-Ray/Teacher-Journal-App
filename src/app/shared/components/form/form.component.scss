@@ -7,6 +7,10 @@ input, textarea {
   &:focus {
     color: white;
   }
+
+  &.ng-invalid {
+    border: 1px solid rgb(184, 101, 101);
+  }
 }
 
 button:hover {
@@ -16,4 +20,3 @@ button:hover {
 .btn-container {
   text-align: center;
 }
-
