@@ -11,6 +11,9 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
 
     case ActionTypes.AddStudent: {
       const newState: IState = cloneObject(state) as IState;
+      if (newState.students.find(student => student.name === action.payload.name && student.lastName === action.payload.surname)) {
+        return newState;
+      }
       const newStudent: Student = new Student(
         {
           id: genId(),
@@ -27,6 +30,9 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
 
     case ActionTypes.AddSubject: {
       const newState: IState = cloneObject(state) as IState;
+      if (newState.subjects.find(subject => subject.name === action.payload.name)) {
+        return newState;
+      }
       const newSubject: Subject = new Subject(
         {
           id: genId(),
