@@ -1,6 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+interface IFormData {
+  value0?: string;
+  value1?: string;
+}
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,7 +16,7 @@ export class FormComponent implements OnInit {
   @Input() public labels: string[] = [];
   @Input() public placeholders: string[] = [];
   @Input() public required: boolean[] = [];
-  @Input() public buttonEntrails: string;
+  @Input() public buttonName: string;
   @Output() public submitted: EventEmitter<IFormData> = new EventEmitter();
   public resetValues: IFormData = {};
   public form: FormGroup = new FormGroup({});
@@ -36,9 +41,4 @@ export class FormComponent implements OnInit {
     this.submitted.emit(this.form.value);
     this.form.reset(this.resetValues);
   }
-}
-
-interface IFormData {
-  value0?: string;
-  value1?: string;
 }
