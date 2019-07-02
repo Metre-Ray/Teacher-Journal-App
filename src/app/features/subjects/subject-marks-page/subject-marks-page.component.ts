@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Subject } from 'src/app/common/entities/subject';
 import { Student } from 'src/app/common/entities/student';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { Observable, Subscription } from 'rxjs';
@@ -23,7 +23,10 @@ interface ICellData {
 })
 export class SubjectMarksPageComponent implements OnInit, OnDestroy {
 
-  @Input() public subject: string = 'Maths';
+  private routeParameterName: string = 'name';
+  private pathIfSubjectNotExists: string = '/subjects';
+
+  public subject: string = 'Maths';
   public students: Student[];
   public subjects: Subject[];
   public dates: string[];
@@ -33,10 +36,15 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
   public modalFlag: boolean = false;
   public teacher: FormControl = new FormControl();
 
-  constructor(private route: ActivatedRoute, private store: Store<State>) { }
+  constructor(private route: ActivatedRoute,  private router: Router, private store: Store<State>) { }
+
+  private addNewMark(data: ICellData): void {
+    if (!this.newValues[data.id]) { this.newValues[data.id] = []; }
+    this.newValues[data.id].push([data.date, data.newContent]);
+  }
 
   public ngOnInit(): void {
-    this.subject = this.route.snapshot.paramMap.get('name');
+    this.subject = this.route.snapshot.paramMap.get(this.routeParameterName);
     this.subscription = this.data$.subscribe((data) => {
       this.students = data.students;
       this.subjects = data.subjects;
@@ -46,6 +54,9 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
         }
       });
     });
+    if (!this.dates) {
+      this.router.navigate([this.pathIfSubjectNotExists]);
+    }
   }
 
   public addDate(open: boolean): void {
@@ -61,17 +72,14 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
 
   public save(event: Event): void {
     event.preventDefault();
-    console.log(this.newValues);
     this.store.dispatch(new AddDateOrMarks({subject: this.subject, values: this.newValues}));
   }
 
   public onEdit(data: ICellData): void {
-    if (!this.newValues[data.id]) { this.newValues[data.id] = []; }
-    this.newValues[data.id].push([data.date, data.newContent]);
+    this.addNewMark(data);
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
 }
