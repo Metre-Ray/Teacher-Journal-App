@@ -6,7 +6,9 @@
       <th>{{'subjectPage.table.head2' | translate}}</th>
       <th>{{'subjectPage.table.head3' | translate}}</th>
       <th>{{'subjectPage.table.head4' | translate}}</th>
-      <th *ngFor="let date of dates">{{ date | date }}</th>
+      <th *ngFor="let date of dates">
+        {{ date | date }}
+      </th>
     </tr>
   </thead>
   <tbody>

@@ -2,12 +2,14 @@
   <div class="mcontainer">
     <div
       *ngFor="let subject of subjects$ | async | sort:'name'"
-      class="subject"
+      class="mcontainer__subject"
       [routerLink]="''+subject.name">
       <span>{{ subject.name }}</span>
     </div>
   </div>
   <div class="bottom-container">
-    <app-round-button [routerLink]="'form'"><span>+</span></app-round-button>
+    <app-round-button [routerLink]="'form'">
+      <span>+</span>
+    </app-round-button>
   </div>
 </div>

@@ -4,11 +4,13 @@
     (removed)="onStudentRemove($event)">
   </app-student-table>
 </div>
+
 <div class="buttons-container">
   <app-round-button [routerLink]="'form'">
     <span>+</span>
   </app-round-button>
 </div>
+
 <div class="modal-container" *ngIf="showModalFlag">
   <p>
     Are you sure you want to delete

@@ -8,13 +8,11 @@ import { Store } from '@ngrx/store';
 import { of, Observable } from 'rxjs';
 import { Actions } from '@ngrx/effects';
 
-// tslint:disable: no-any
-
 @Pipe({
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  public transform(value: any): any {
+  public transform(value: string): string {
     return value;
   }
 }

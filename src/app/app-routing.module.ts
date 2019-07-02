@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'subjects', children: [
     { path: '', pathMatch: 'full', component: SubjectsListPageComponent},
     { path: 'form', component: SubjectFormComponent },
-    { path: ':name', component: SubjectMarksPageComponent}
+    { path: ':name', component: SubjectMarksPageComponent }
   ] },
   { path: 'statistics', component: StatisticsPageComponent },
   { path: 'export', component: ExportPageComponent }

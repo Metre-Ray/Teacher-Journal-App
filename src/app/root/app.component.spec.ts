@@ -13,8 +13,7 @@ import { ComponentInstance } from '@angular/core/src/render3/interfaces/player';
   name: 'translate'
 })
 class TranslatePipe implements PipeTransform {
-  // tslint:disable-next-line: no-any
-  public transform(value: any[]): any {
+  public transform(value: string[]): string[] {
     return value;
   }
 }

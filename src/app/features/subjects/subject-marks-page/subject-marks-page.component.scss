@@ -11,15 +11,17 @@ form {
   margin-top: 30px;
 }
 
+.form-container {
+  &__btn {
+    margin: 10px;
+    text-align: center;
+  }
+}
+
 .table-container {
   height: 70vh;
   min-height: 300px;
   overflow: auto;
-}
-
-.btn-container {
-  margin: 10px;
-  text-align: center;
 }
 
 .top-btn-container {

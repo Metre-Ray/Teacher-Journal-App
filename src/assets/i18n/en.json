@@ -19,8 +19,8 @@
     },
     "form": {
       "purpose": "Add new student",
-      "name": "Name",
-      "surname": "Surname",
+      "name": "* Name",
+      "surname": "* Surname",
       "address": "Address",
       "description": "Description",
       "add": "Add",
@@ -39,8 +39,8 @@
     },
     "form": {
       "purpose": "Add new subject",
-      "name": "Name",
-      "teacher": "Teacher: Name Surname",
+      "name": "* Name",
+      "teacher": "* Teacher: Name Surname",
       "room": "Room",
       "description": "Description",
       "add": "Add",

@@ -15,9 +15,15 @@
       <td>{{i + 1}}</td>
       <td>{{student.name}}</td>
       <td>{{student.lastName}}</td>
-      <td><div class="block1">{{student.address}}</div></td>
-      <td><div class="block2">{{student.description}}</div></td>
-      <td class="remove" (click)="removeRow(student)"><span class="fas fa-times"></span></td>
+      <td>
+        <div class="block1">{{student.address}}</div>
+      </td>
+      <td>
+        <div class="block2">{{student.description}}</div>
+      </td>
+      <td class="remove" (click)="removeRow(student)">
+        <span class="fas fa-times"></span>
+      </td>
     </tr>
   </tbody>
 </table>
