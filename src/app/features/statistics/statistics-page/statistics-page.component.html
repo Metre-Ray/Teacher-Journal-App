@@ -1,28 +1,34 @@
 <div class="dropdown-container">
-    <app-custom-dropdown
+  <app-custom-dropdown
     [values1]="subjectNames"
     [values2]="dates"
     (selected)="onDropdownSelect($event)">
   </app-custom-dropdown>
 </div>
+
 <div class="mcontainer">
 
   <div class="panel-container">
     <div class="panel-container__buttons">
-      <button (click)="chooseList('students')">{{'statisticsPage.students' | translate}}</button>
-      <button (click)="chooseList('subjects')">{{'statisticsPage.subjects' | translate}}</button>
+      <button (click)="chooseList('students')">
+        {{'statisticsPage.students' | translate}}
+      </button>
+      <button (click)="chooseList('subjects')">
+        {{'statisticsPage.subjects' | translate}}
+      </button>
     </div>
     <div class="panel-container__list">
-      <ol *ngIf="listName === 'students'" (click)="showStatistics($event)">
+      <ol *ngIf="listName === 'students'" >
         <li
           *ngFor="let student of currentStudents | sort:'lastName'"
-          attr.data-studentid = {{student.id}}>
+          (click)="showStatistics(student)">
           {{student.name + ' ' + student.lastName}}
         </li>
       </ol>
-      <ol *ngIf="listName === 'subjects'" (click)="showStatistics()">
+      <ol *ngIf="listName === 'subjects'">
         <li
-          *ngFor="let subject of subjects$ | async | sort:'name'">
+          *ngFor="let subject of subjects$ | async | sort:'name'"
+          (click)="showStatistics(subject)">
           {{subject.name}}
         </li>
       </ol>
@@ -31,8 +37,12 @@
 
   <div class="statistics-container">
     <div class="statistics-container__data">
-      <div><span>{{'statisticsPage.student' | translate}}:</span> {{currentStudent}}</div>
-      <div><span>{{'statisticsPage.averageMark' | translate}}:</span> {{statisticsData.averageMark}}</div>
+      <div *ngIf="listName === 'students'">
+        <span>{{'statisticsPage.student' | translate}}:</span> {{currentStudent}}
+      </div>
+      <div>
+        <span>{{'statisticsPage.averageMark' | translate}}:</span> {{statisticsData.averageMark}}
+      </div>
       <app-bar-chart [data]="chartData"></app-bar-chart>
     </div>
   </div>

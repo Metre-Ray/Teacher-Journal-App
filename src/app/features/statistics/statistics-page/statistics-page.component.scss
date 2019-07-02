@@ -33,6 +33,10 @@ button {
   display: flex;
 }
 
+.dropdown-container {
+  text-align: end;
+}
+
 .panel-container {
   display: inline-block;
   width: 30%;
@@ -77,6 +81,13 @@ button {
   }
 }
 
-.dropdown-container {
-  text-align: end;
+@media (max-width: 400px) {
+  .mcontainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statistics-container {
+    margin-top: 20px;
+  }
 }
