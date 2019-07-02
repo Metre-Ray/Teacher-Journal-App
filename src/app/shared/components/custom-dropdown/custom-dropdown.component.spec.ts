@@ -1,6 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomDropdownComponent } from './custom-dropdown.component';
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe ({
+  name: 'translate'
+})
+class MockTranslatePipe implements PipeTransform {
+  public transform(value: string[]): string[] {
+    return value;
+  }
+}
 
 describe('CustomDropdownComponent', () => {
   let component: CustomDropdownComponent;
@@ -8,7 +18,7 @@ describe('CustomDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomDropdownComponent ],
+      declarations: [ CustomDropdownComponent, MockTranslatePipe ],
       imports: [ ReactiveFormsModule ]
     })
     .compileComponents();
@@ -80,5 +90,28 @@ describe('CustomDropdownComponent', () => {
       expect(element.checked).toBe(true);
     });
   });
+
+  it('should emit on form value change', fakeAsync(() => {
+    component.flag = true;
+    component.asDates = false;
+    spyOn(component.selected, 'emit');
+    fixture.detectChanges();
+
+    const btn: HTMLElement = fixture.nativeElement.querySelector('.head-container span');
+    expect(component.selected.emit).not.toHaveBeenCalled();
+
+    btn.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    tick(200);
+    expect(component.selected.emit).toHaveBeenCalled();
+
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('form input');
+
+    input.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    tick(200);
+    expect(input.checked).toBeTruthy();
+    expect(component.selected.emit).toHaveBeenCalledTimes(2);
+  }));
 
 });

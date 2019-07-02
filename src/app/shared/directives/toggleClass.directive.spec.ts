@@ -28,25 +28,35 @@ describe('ToggleClassDirective', () => {
     elements = fixture.nativeElement.querySelectorAll('h2');
   });
 
-  it('should have two elements with directive', () => {
+  it('test component should have two elements with directive', () => {
     const elementsWithDir: DebugElement[] = fixture.debugElement.queryAll(By.directive(ToggleClassDirective));
     expect(elementsWithDir.length).toBe(2);
   });
 
-  it('should add to the first h2 class "sky"', () => {
+  it('should add to the first h2 class "sky" and nothing to others', () => {
     elements[0].dispatchEvent(new Event('click'));
     expect(elements[0].classList).toContain('sky');
+    expect(elements[1].classList).not.toContain('sky');
+    expect(elements[1].classList).not.toContain('clicked');
+    expect(elements[2].classList).not.toContain('sky');
   });
 
-  it('should add to the second h2 class "clicked"', () => {
+  it('should add to the second h2 class "clicked" and nothing to others', () => {
     elements[1].dispatchEvent(new Event('click'));
     expect(elements[1].classList).toContain('clicked');
+    expect(elements[0].classList).not.toContain('sky');
+    expect(elements[0].classList).not.toContain('clicked');
+    expect(elements[2].classList).not.toContain('sky');
   });
 
-  it('should add to the third h2 nothing', () => {
+  it('should add to the third h2 nothing and nothing to others', () => {
     elements[2].dispatchEvent(new Event('click'));
     expect(elements[2].classList).not.toContain('clicked');
     expect(elements[2].classList).not.toContain('sky');
+    expect(elements[0].classList).not.toContain('clicked');
+    expect(elements[0].classList).not.toContain('sky');
+    expect(elements[1].classList).not.toContain('clicked');
+    expect(elements[1].classList).not.toContain('sky');
   });
 
 });
