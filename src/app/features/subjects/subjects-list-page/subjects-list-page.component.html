@@ -11,5 +11,21 @@
     <app-round-button [routerLink]="'form'">
       <span>+</span>
     </app-round-button>
+    <app-round-button (click)="showModal()">
+      <span>-</span>
+    </app-round-button>
   </div>
+</div>
+
+<div class="modal-container" *ngIf="modalFlag">
+  <p>
+    Enter subject's name:
+    <input #subjectName type="text" class="form-control">
+  </p>
+  <button class="btn btn-primary" (click)="deleteSubject(subjectName.value)">
+    Delete
+  </button>
+  <button class="btn btn-primary" (click)="showModal()">
+    Cancel
+  </button>
 </div>

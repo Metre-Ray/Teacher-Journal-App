@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
-import { IOurData } from 'src/app/common/entities/data';
+import { IData } from 'src/app/common/entities/data';
 import { Student } from 'src/app/common/entities/student';
+import { IState } from '../state';
 
 export enum ActionTypes {
   AddStudent = '[StudentForm Component] AddStudent',
@@ -12,7 +13,10 @@ export enum ActionTypes {
   AddDateOrMarks = '[SubjectMarksPage Component] AddDateOrMarks',
   LoadDataRequest = 'Load Data',
   LoadDataSuccess = 'Data Loaded Success',
-  LoadDataFailed = 'Data Loaded Failed'
+  LoadDataFailed = 'Data Loaded Failed',
+  SaveData = 'Save Data',
+  SaveDataSuccess = 'Data successfully saved',
+  SaveDataFailed = 'Data save failed',
 }
 
 export class AddStudent implements Action {
@@ -30,6 +34,12 @@ export class DeleteStudent implements Action {
   public readonly type: ActionTypes.DeleteStudent = ActionTypes.DeleteStudent;
 
   constructor(public payload: Student) {}
+}
+
+export class DeleteSubject implements Action {
+  public readonly type: ActionTypes.DeleteSubject = ActionTypes.DeleteSubject;
+
+  constructor(public payload: string) {}
 }
 
 export class AddSubject implements Action {
@@ -62,12 +72,26 @@ export class LoadDataRequest implements Action {
 export class LoadDataSuccess implements Action {
   public readonly type: ActionTypes.LoadDataSuccess = ActionTypes.LoadDataSuccess;
 
-  constructor(public payload: IOurData) {}
+  constructor(public payload: IData) {}
 }
 
 export class LoadDataFailed implements Action {
   public readonly type: ActionTypes.LoadDataFailed = ActionTypes.LoadDataFailed;
 }
 
-export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks |
-  LoadDataRequest | LoadDataSuccess | LoadDataFailed | DeleteStudent;
+export class SaveData implements Action {
+  public readonly type: ActionTypes.SaveData = ActionTypes.SaveData;
+
+  constructor(public payload: IState) {}
+}
+
+export class SaveDataSuccess implements Action {
+  public readonly type: ActionTypes.SaveDataSuccess = ActionTypes.SaveDataSuccess;
+}
+
+export class SaveDataFailed implements Action {
+  public readonly type: ActionTypes.SaveDataFailed = ActionTypes.SaveDataFailed;
+}
+
+export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | DeleteSubject |
+  LoadDataRequest | LoadDataSuccess | LoadDataFailed | DeleteStudent | SaveData | SaveDataSuccess | SaveDataFailed;

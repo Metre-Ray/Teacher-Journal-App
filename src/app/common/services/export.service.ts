@@ -5,6 +5,7 @@ import * as XLSX from 'xlsx';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { IRow } from '../entities/excelRow';
+import { cloneObject } from '../helpers/deepCopy';
 
 (pdfMake.vfs as pdfMake.TFontFamily) = pdfFonts.pdfMake.vfs;
 
@@ -17,6 +18,7 @@ export class ExportService {
     return subjects.map((subject) => {
       return students.map((student) => {
         const row: IRow = {
+          subject: subject.name,
           name: student.name,
           surname: student.lastName,
         };
@@ -39,7 +41,11 @@ export class ExportService {
 
   public exportDataToExcel(data1: Student[], data2?: Subject[]): void {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    const workSheet1: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data1);
+    const dataForExcel: Partial<Student>[] = (cloneObject(data1) as  Student[]).map((student) => {
+      delete student.id;
+      return student;
+    });
+    const workSheet1: XLSX.WorkSheet = XLSX.utils.json_to_sheet(dataForExcel);
     XLSX.utils.book_append_sheet(wb, workSheet1, 'Sheet1');
     if (data2) {
       const marksTablesContent: IRow[][] = this.convertMarksToTablesFormat(data1, data2);
@@ -58,4 +64,3 @@ export class ExportService {
     pdfMake.createPdf(docDefinition).download();
   }
 }
-
