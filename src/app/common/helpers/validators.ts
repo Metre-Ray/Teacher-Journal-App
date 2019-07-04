@@ -18,3 +18,11 @@ export function validateDate(date: string): boolean {
 
   return true;
 }
+
+export function validateMark(mark: string | number): boolean {
+  const num: number = Number(mark);
+  if (!num || num < 0 || num > 10) {
+    return false;
+  }
+  return true;
+}
