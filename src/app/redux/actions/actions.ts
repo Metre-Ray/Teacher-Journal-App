@@ -11,6 +11,7 @@ export enum ActionTypes {
   ChangeSubject = '[SubjectListPage Component] ChangeSubject',
   AddSubjectDate = '[SubjectMarksPage Component] AddSubjectDate',
   AddDateOrMarks = '[SubjectMarksPage Component] AddDateOrMarks',
+  DeleteDate = '[SubjectMarksPage Component] DeleteDate',
   LoadDataRequest = 'Load Data',
   LoadDataSuccess = 'Data Loaded Success',
   LoadDataFailed = 'Data Loaded Failed',
@@ -65,6 +66,12 @@ export class AddDateOrMarks implements Action {
   constructor(public payload: {subject: string, values: object}) {}
 }
 
+export class DeleteDate implements Action {
+  public readonly type: ActionTypes.DeleteDate = ActionTypes.DeleteDate;
+
+  constructor(public payload: {subject: string, date: string}) {}
+}
+
 export class LoadDataRequest implements Action {
   public readonly type: ActionTypes.LoadDataRequest = ActionTypes.LoadDataRequest;
 }
@@ -93,5 +100,5 @@ export class SaveDataFailed implements Action {
   public readonly type: ActionTypes.SaveDataFailed = ActionTypes.SaveDataFailed;
 }
 
-export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | DeleteSubject |
+export type ActionsUnion = AddStudent | AddSubject | AddSubjectDate | AddDateOrMarks | DeleteSubject | DeleteDate |
   LoadDataRequest | LoadDataSuccess | LoadDataFailed | DeleteStudent | SaveData | SaveDataSuccess | SaveDataFailed;

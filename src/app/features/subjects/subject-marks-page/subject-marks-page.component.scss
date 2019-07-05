@@ -5,16 +5,16 @@ h2 {
   margin-bottom: 0;
 }
 
-form {
-  max-width: 700px;
-  margin: 20px auto;
-  margin-top: 30px;
-}
-
 .form-container {
   &__btn {
     margin: 10px;
     text-align: center;
+  }
+
+  form {
+    max-width: 700px;
+    margin: 30px auto;
+    margin-top: 30px;
   }
 }
 
@@ -36,9 +36,9 @@ form {
   font-size: 40px;
   color: white;
   text-align: center;
-}
 
-.btn-add span {
-  display: block;
-  margin-top: -8px;
+  span {
+    display: block;
+    margin-top: -8px;
+  }
 }

@@ -20,6 +20,7 @@ export class SubjectTableComponent {
   @Input() public dates: string[];
   @Input() public subject: string;
   @Output() public edited: EventEmitter<ICellData> = new EventEmitter();
+  @Output() public columnDeleted: EventEmitter<string> = new EventEmitter();
 
   constructor(private renderer: Renderer2) {
   }
@@ -37,6 +38,10 @@ export class SubjectTableComponent {
     } else {
       this.renderer.addClass((event.target as HTMLElement), 'invalid');
     }
+  }
+
+  public onColumnDelete(data: string, event: Event): void {
+    this.columnDeleted.emit(data);
   }
 
 }

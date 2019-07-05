@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { Observable, Subscription } from 'rxjs';
-import { AddSubjectDate, AddDateOrMarks } from 'src/app/redux/actions/actions';
+import { AddSubjectDate, AddDateOrMarks, DeleteDate } from 'src/app/redux/actions/actions';
 import { FormControl } from '@angular/forms';
 import { IState } from 'src/app/redux/state';
 import { validateDate } from 'src/app/common/helpers/validators';
@@ -59,24 +59,28 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  public addDate(open: boolean): void {
-    this.modalFlag = open;
+  public showModal(flag: boolean): void {
+    this.modalFlag = flag;
   }
 
-  public onDateSubmit(data: string): void {
+  public addDate(date: string): void {
     this.modalFlag = false;
-    if (validateDate(data) && this.dates.indexOf(data) < 0) {
-      this.store.dispatch(new AddSubjectDate({subject: this.subject, date: data}));
+    if (validateDate(date) && this.dates.indexOf(date) < 0) {
+      this.store.dispatch(new AddSubjectDate({subject: this.subject, date}));
     }
+  }
+
+  public deleteDate(date: string): void {
+    this.store.dispatch(new DeleteDate({subject: this.subject, date}));
+  }
+
+  public onEdit(data: ICellData): void {
+    this.addNewMark(data);
   }
 
   public save(event: Event): void {
     event.preventDefault();
     this.store.dispatch(new AddDateOrMarks({subject: this.subject, values: this.newValues}));
-  }
-
-  public onEdit(data: ICellData): void {
-    this.addNewMark(data);
   }
 
   public ngOnDestroy(): void {

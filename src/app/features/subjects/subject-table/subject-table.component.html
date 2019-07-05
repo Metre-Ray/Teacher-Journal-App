@@ -6,8 +6,12 @@
       <th>{{'subjectPage.table.head2' | translate}}</th>
       <th>{{'subjectPage.table.head3' | translate}}</th>
       <th>{{'subjectPage.table.head4' | translate}}</th>
-      <th *ngFor="let date of dates">
+      <th *ngFor="let date of dates" class="date">
         {{ date | date }}
+        <span
+          class="fas fa-trash-alt"
+          (click)="onColumnDelete(date, $event)">
+        </span>
       </th>
     </tr>
   </thead>

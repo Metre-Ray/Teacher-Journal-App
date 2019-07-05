@@ -94,6 +94,23 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
       return newState;
     }
 
+    case ActionTypes.DeleteDate: {
+      const newState: IState = cloneObject(state) as IState;
+      const subject: Subject = newState.subjects.find((subj) => subj.name === action.payload.subject);
+      if (!subject) {
+        return newState;
+      }
+      const index: number = subject.dates.indexOf(action.payload.date);
+      if (index === -1) {
+        return newState;
+      }
+      subject.dates.splice(index, 1);
+      newState.students.forEach((student) => {
+        delete student.marks[action.payload.date];
+      });
+      return newState;
+    }
+
     case ActionTypes.LoadDataSuccess: {
       const newState: IState = {
         students: convertStudentDataToObjects(action.payload.students),
