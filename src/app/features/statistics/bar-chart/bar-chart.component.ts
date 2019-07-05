@@ -53,8 +53,11 @@ export class BarChartComponent implements OnChanges {
       .axisLeft(yScale)
       .tickSize(tickSize);
 
-    // tslint:disable-next-line: typedef
-    const bars = svg.selectAll('rect').data(this.data);
+    const bars: d3.Selection<d3.BaseType, {
+        name: string;
+        x: number;
+      },
+      d3.BaseType, unknown> = svg.selectAll('rect').data(this.data);
     bars.enter()
       .append('rect')
       .style('width', d => `${xScale(d.x) - xScale(0)}px`)
@@ -71,8 +74,11 @@ export class BarChartComponent implements OnChanges {
           .style('fill', rectFill);
       });
 
-    // tslint:disable-next-line: typedef
-    const text = svg.selectAll('text').data(this.data);
+    const text: d3.Selection<d3.BaseType, {
+        name: string;
+        x: number;
+      },
+      d3.BaseType, unknown> = svg.selectAll('text').data(this.data);
     text.enter()
       .append('text')
       .text((d) => {

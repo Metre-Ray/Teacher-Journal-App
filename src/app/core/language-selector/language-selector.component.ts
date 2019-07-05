@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LanguageSelectorComponent implements OnInit {
 
-  @Input() public languages: string[][] = [['en', 'English'], ['ru', 'Русский']];
+  public languages: string[][] = [['en', 'English'], ['ru', 'Русский']];
   public flag: boolean = false;
   public label: string;
 

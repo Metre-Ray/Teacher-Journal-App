@@ -21,6 +21,17 @@ export class StudentFormComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<State>, private actions$: Actions, private resolver: ComponentFactoryResolver) { }
 
+  private createPopUp(title: string, text: string, success: boolean): void {
+    const factory: ComponentFactory<PopUpComponent> = this.resolver.resolveComponentFactory(PopUpComponent);
+    this.component = this.popUp.createComponent(factory);
+    this.component.instance.title = title;
+    this.component.instance.text = text;
+    this.component.instance.success = success;
+    setTimeout(() => {
+      this.component.destroy();
+    },         2000);
+  }
+
   public ngOnInit(): void {
     this.subscription = this.actions$.pipe(
       ofType(ActionTypes.AddStudent)
@@ -41,17 +52,6 @@ export class StudentFormComponent implements OnInit, OnDestroy {
       description: event.value3
     };
     this.store.dispatch(new AddStudent(data));
-  }
-
-  public createPopUp(title: string, text: string, success: boolean): void {
-    const factory: ComponentFactory<PopUpComponent> = this.resolver.resolveComponentFactory(PopUpComponent);
-    this.component = this.popUp.createComponent(factory);
-    this.component.instance.title = title;
-    this.component.instance.text = text;
-    this.component.instance.success = success;
-    setTimeout(() => {
-      this.component.destroy();
-    },         2000);
   }
 
   public ngOnDestroy(): void {

@@ -4,12 +4,11 @@ import { RouterModule } from '@angular/router';
 import { PanelComponent } from './panel.component';
 import { Pipe, PipeTransform } from '@angular/core';
 
-// tslint:disable: no-any
 @Pipe({
   name: 'translate'
 })
 export class TranslatePipe implements PipeTransform {
-  public transform(value: any): any {
+  public transform(value: string): string {
     return value;
   }
 }
