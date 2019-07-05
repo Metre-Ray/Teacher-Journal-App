@@ -20,7 +20,7 @@
       <td>{{i + 1}}</td>
       <td>{{student.name}}</td>
       <td>{{student.lastName}}</td>
-      <td>{{calcAverageMark(student.marks)}}</td>
+      <td>{{calcAverageMark(student.marks) || ''}}</td>
       <td
         contenteditable
         *ngFor="let date of dates"

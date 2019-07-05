@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Renderer2, ɵConsole } from '@angular/core';
 import { Student } from 'src/app/common/entities/student';
 import { calcAverage } from 'src/app/common/helpers/calculations';
 import { validateMark } from 'src/app/common/helpers/validators';
@@ -31,8 +31,11 @@ export class SubjectTableComponent {
   }
 
   public onMarkEdit(id: string, date: string, event: Event): void {
-    const newContent: string = (event.target as HTMLElement).textContent;
-    if (newContent === '' || validateMark(newContent)) {
+    let newContent: string = (event.target as HTMLElement).textContent;
+    if (newContent === '' || newContent[0] === '*' || (newContent[0] === ' ' && newContent[1] === '*') || validateMark(newContent)) {
+      if (newContent[0] === ' ') {
+        newContent = newContent.slice(1);
+      }
       this.renderer.removeClass((event.target as HTMLElement), 'invalid');
       this.edited.emit({id, date, newContent});
     } else {
