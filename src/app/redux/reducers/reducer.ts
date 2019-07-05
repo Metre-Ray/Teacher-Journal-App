@@ -106,7 +106,9 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
       }
       subject.dates.splice(index, 1);
       newState.students.forEach((student) => {
-        delete student.marks[action.payload.date];
+        if (student.marks[action.payload.subject]) {
+          delete student.marks[action.payload.subject][action.payload.date];
+        }
       });
       return newState;
     }
