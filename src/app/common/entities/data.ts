@@ -17,7 +17,7 @@ export interface ISubjectData {
   Dates: string[];
 }
 
-export interface IOurData {
+export interface IData {
   students: IStudentData[];
   subjects: ISubjectData[];
 }

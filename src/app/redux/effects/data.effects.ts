@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { EMPTY, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { RequestDataFromServerService } from 'src/app/common/services/request-data-from-server.service';
-import { ActionTypes, LoadDataSuccess, ActionsUnion } from '../actions/actions';
-import { IOurData } from 'src/app/common/entities/data';
+import { ActionTypes, LoadDataSuccess, ActionsUnion, LoadDataFailed } from '../actions/actions';
+import { IData } from 'src/app/common/entities/data';
 
 @Injectable()
 export class DataEffects {
@@ -17,10 +17,10 @@ export class DataEffects {
         .getMockData()
           .pipe(
             map(data => {
-              return new LoadDataSuccess((data as IOurData));
+              return new LoadDataSuccess((data as IData));
             }),
             catchError(() => {
-              return EMPTY;
+              return of(new LoadDataFailed());
             })
           )
       )
