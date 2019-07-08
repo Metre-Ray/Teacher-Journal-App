@@ -9,6 +9,7 @@ import { AddSubjectDate, AddDateOrMarks, DeleteDate } from 'src/app/redux/action
 import { FormControl } from '@angular/forms';
 import { IState } from 'src/app/redux/state';
 import { validateDate } from 'src/app/common/helpers/validators';
+import { selectAllData } from 'src/app/redux/selectors/selectors';
 
 interface ICellData {
   id: string;
@@ -30,7 +31,7 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
   public students: Student[];
   public subjects: Subject[];
   public dates: string[];
-  public data$: Observable<IState> = this.store.select(state => state.data);
+  public data$: Observable<IState> = this.store.select(selectAllData);
   public subscription: Subscription;
   public newValues: object = {};
   public modalFlag: boolean = false;

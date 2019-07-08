@@ -6,6 +6,7 @@ import { IState } from 'src/app/redux/state';
 import { Student } from 'src/app/common/entities/student';
 import { ExportService } from 'src/app/common/services/export.service';
 import { Subject } from 'src/app/common/entities/subject';
+import { selectAllData } from 'src/app/redux/selectors/selectors';
 
 @Component({
   selector: 'app-export-page',
@@ -14,7 +15,7 @@ import { Subject } from 'src/app/common/entities/subject';
 })
 export class ExportPageComponent implements OnDestroy, OnInit {
   private subscription: Subscription;
-  public data$: Observable<IState> = this.store.select(state => state.data);
+  public data$: Observable<IState> = this.store.select(selectAllData);
   public students: Student[] = [];
   public subjects: Subject[] = [];
 

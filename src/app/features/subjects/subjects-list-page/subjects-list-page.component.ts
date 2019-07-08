@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { Observable } from 'rxjs';
 import { DeleteSubject } from 'src/app/redux/actions/actions';
+import { selectSubjects } from 'src/app/redux/selectors/selectors';
 
 @Component({
   selector: 'app-subjects-list-page',
@@ -13,7 +14,7 @@ import { DeleteSubject } from 'src/app/redux/actions/actions';
 export class SubjectsListPageComponent {
 
   public modalFlag: boolean = false;
-  public subjects$: Observable<Subject[]> = this.store.select(state => state.data.subjects);
+  public subjects$: Observable<Subject[]> = this.store.select(selectSubjects);
 
   constructor(private store: Store<State>) { }
 

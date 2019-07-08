@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { DeleteStudent } from 'src/app/redux/actions/actions';
+import { selectStudents } from 'src/app/redux/selectors/selectors';
 
 @Component({
   selector: 'app-student-page',
@@ -15,7 +16,7 @@ export class StudentPageComponent {
   public showModalFlag: boolean = false;
   public student: Student;
 
-  public students$: Observable<Student[]> = this.store.select(state => state.data.students);
+  public students$: Observable<Student[]> = this.store.select(selectStudents);
 
   constructor(private store: Store<State>) { }
 
