@@ -17,7 +17,7 @@
     <form action="" [formGroup]="form">
       <ul
         *ngIf="values1"
-        formArrayName="top_array"
+        formArrayName="subjectArray"
         class="checkbox-container">
 
         <li
@@ -25,7 +25,11 @@
           [formGroupName]="i"
           class="group top-group">
 
-          <input type="checkbox" name="" id="{{value}}" formControlName="name">
+          <input
+            type="checkbox"
+            name=""
+            id="{{value}}"
+            formControlName="name">
           <label for="{{value}}">
             <span class="checkmark"></span>
             {{value}}
@@ -34,11 +38,15 @@
           <ul
             formArrayName="subarray"
             class="checkbox-container"
-            *ngIf="form.get('top_array').length && form.get('top_array').controls[i].get('name').value">
+            *ngIf="values2[i] && form.get('subjectArray').controls[i].get('name').value">
             <li
               *ngFor="let date of values2[i]; let j = index"
               class="group">
-              <input type="checkbox" name="" id="{{value+date}}" [formControlName]="j">
+              <input
+                type="checkbox"
+                name=""
+                id="{{value+date}}"
+                [formControlName]="j">
               <label for="{{value+date}}" *ngIf="asDates">
                 <span class="checkmark"></span>
                 {{date | date:'d/M/yyyy'}}

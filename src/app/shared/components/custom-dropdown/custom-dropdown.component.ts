@@ -3,21 +3,26 @@ import { FormArray, FormBuilder, FormGroup, FormControl, AbstractControl } from 
 import { debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
+interface IFormValue {
+  subjectArray: { name: string, subarray: boolean[] }[];
+}
+
 @Component({
   selector: 'app-custom-dropdown',
   templateUrl: './custom-dropdown.component.html',
   styleUrls: ['./custom-dropdown.component.scss'],
 })
 export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
+  private subscription: Subscription;
 
   @Output() public selected: EventEmitter<string[][]> = new EventEmitter();
   @Input() public values1: string[] = [];
   @Input() public values2: string[][] = [];
+  @Input() public label: string = '';
   @Input() public asDates: boolean = true;
-  public subscription: Subscription;
 
   public form: FormGroup = this.fb.group({
-    top_array: this.fb.array([])
+    subjectArray: this.fb.array([])
   });
   public inputControl: FormControl = this.fb.control({value: '', disabled: true});
   public flag: boolean = false;
@@ -31,22 +36,22 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
         const newControl: FormControl = this.fb.control(false);
         (newGroup.get('subarray') as FormArray).push(newControl);
       });
-      (this.form.get('top_array') as FormArray).push(newGroup);
+      (this.form.get('subjectArray') as FormArray).push(newGroup);
     });
   }
 
   private collectResultAndEmit(value: IFormValue): void {
     const result: string[][] = [];
-    value.top_array.forEach((group, i) => {
+    value.subjectArray.forEach((group, i) => {
       group.subarray.forEach((control, j) => {
         if (control === true) {
-          const temp1: string = this.values1[i];
-          const temp2: string = this.values2[i][j];
-          result.push([temp1, temp2]);
+          const subjectName: string = this.values1[i];
+          const date: string = this.values2[i][j];
+          result.push([subjectName, date]);
         }
       });
     });
-    this.inputControl.setValue(result.map((el => `${el[0]}: ${el[1]}`)).join('; '));
+    this.inputControl.setValue(result.map((el => `${el[0]}: ${el[1]}`)).join('; ') || this.label);
     this.selected.emit(result);
   }
 
@@ -62,6 +67,7 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.inputControl.setValue(this.label);
     this.subscription = this.form.valueChanges
       .pipe(debounceTime(200))
       .subscribe((value) => {
@@ -74,7 +80,7 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public checkAll(value: boolean): void {
-    const groups: AbstractControl[] = (this.form.get('top_array') as FormArray).controls;
+    const groups: AbstractControl[] = (this.form.get('subjectArray') as FormArray).controls;
     for (const element of groups) {
       element.get('name').setValue(value);
       (element.get('subarray') as FormArray).controls
@@ -83,7 +89,7 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public expandAll(value: boolean): void {
-    (this.form.get('top_array') as FormArray).controls
+    (this.form.get('subjectArray') as FormArray).controls
       .forEach((element) => element.get('name').setValue(value));
   }
 
@@ -91,8 +97,4 @@ export class CustomDropdownComponent implements OnInit, OnChanges, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-}
-
-interface IFormValue {
-  top_array: { name: string, subarray: boolean[] }[];
 }
