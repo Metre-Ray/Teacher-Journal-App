@@ -27,7 +27,10 @@ export class FormComponent implements OnInit {
       if (!this.required[index]) {
         this.form.addControl(`value${index}`, new FormControl(''));
       } else {
-        this.form.addControl(`value${index}`, new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z \'()]+$')]));
+        this.form.addControl(`value${index}`, new FormControl(
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я \'()]*$')]
+        ));
       }
     });
   }
