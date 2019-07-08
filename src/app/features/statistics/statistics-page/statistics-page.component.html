@@ -37,11 +37,14 @@
 
   <div class="statistics-container">
     <div class="statistics-container__data">
-      <div *ngIf="listName === 'students'">
-        <span>{{'statisticsPage.student' | translate}}:</span> {{currentStudent}}
+      <div>
+        <span *ngIf="listName === listNames[0]">{{'statisticsPage.student' | translate}}:</span>
+        <span *ngIf="listName === listNames[1]">{{'statisticsPage.subjects' | translate}}:</span>
+        {{currentStudentOrSubject}}
       </div>
       <div>
-        <span>{{'statisticsPage.averageMark' | translate}}:</span> {{statisticsData.averageMark}}
+        <span>{{'statisticsPage.averageMark' | translate}}:</span>
+        {{statisticsData.averageMark}}
       </div>
       <app-bar-chart [data]="chartData"></app-bar-chart>
     </div>

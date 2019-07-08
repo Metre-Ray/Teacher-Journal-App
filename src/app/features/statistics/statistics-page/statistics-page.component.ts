@@ -6,6 +6,7 @@ import { Subject } from 'src/app/common/entities/subject';
 import { Student } from 'src/app/common/entities/student';
 import { calcAverage } from 'src/app/common/helpers/calculations';
 import { IMark } from 'src/app/common/entities/mark';
+import { selectStudents, selectSubjects } from 'src/app/redux/selectors/selectors';
 
 @Component({
   selector: 'app-statistics-page',
@@ -16,15 +17,15 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
 
   private listNames: string[] = ['students', 'subjects'];
 
-  public students$: Observable<Student[]> = this.store.select(state => state.data.students);
-  public subjects$: Observable<Subject[]> = this.store.select(state => state.data.subjects);
+  public students$: Observable<Student[]> = this.store.select(selectStudents);
+  public subjects$: Observable<Subject[]> = this.store.select(selectSubjects);
   public subscription1: Subscription;
   public subscription2: Subscription;
   public students: Student[];
   public subjects: Subject[];
 
   public currentStudents: Student[] = [];
-  public currentStudent: string = '';
+  public currentStudentOrSubject: string = '';
   public listName: string = this.listNames[0];
   public dates: string[][];
   public subjectNames: string[];
@@ -98,11 +99,12 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
       const message: string = 'this student doesn\'t have marks';
       const marks: IMark = (item as Student).marks;
       const averageValue: number =  this.calculateAverageMarkOfStudent(marks);
-      this.currentStudent = `${item.name} ${(item as Student).lastName}`;
+      this.currentStudentOrSubject = `${item.name} ${(item as Student).lastName}`;
       this.statisticsData.averageMark = averageValue ? averageValue : message;
       this.createChartDataForStudent(item as Student);
     }
     if (this.listName === this.listNames[1]) {
+      this.currentStudentOrSubject = `${item.name}`;
       this.createChartDataForSubject(item as Subject);
     }
   }
@@ -110,6 +112,7 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
   public chooseList(name: string): void {
     this.listName = name;
     this.statisticsData.averageMark = '';
+    this.currentStudentOrSubject = '';
   }
 
   public onDropdownSelect(data: string[][]): void {
