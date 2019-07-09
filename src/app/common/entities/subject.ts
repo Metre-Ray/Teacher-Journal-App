@@ -15,7 +15,7 @@ export class Subject implements ISubject {
   public description: string;
   public dates: string[];
 
-  constructor(obj: ISubject) {
-    return {...this, ...obj};
+  constructor(subject: ISubject) {
+    return {...this, ...subject};
   }
 }

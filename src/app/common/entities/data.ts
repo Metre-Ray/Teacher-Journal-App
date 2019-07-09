@@ -1,10 +1,12 @@
+import { IMark } from './mark';
+
 export interface IStudentData {
   Id: string;
   Name: string;
   'Last name': string;
   Address: string;
   Description: string;
-  Marks: object;
+  Marks: IMark;
 }
 
 export interface ISubjectData {
@@ -13,7 +15,7 @@ export interface ISubjectData {
   Room: string;
   Teacher: string;
   Description: string;
-  Marks: object;
+  Marks: IMark;
   Dates: string[];
 }
 

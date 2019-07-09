@@ -1,10 +1,12 @@
+import { IMark } from './mark';
+
 export interface IStudent {
   id: string;
   name: string;
   lastName: string;
   address: string;
   description: string;
-  marks: object;
+  marks: IMark;
 }
 
 export class Student implements IStudent {
@@ -13,7 +15,7 @@ export class Student implements IStudent {
   public lastName: string;
   public address: string;
   public description: string;
-  public marks: object;
+  public marks: IMark;
 
   constructor(obj: IStudent) {
     return {...this, ...obj};

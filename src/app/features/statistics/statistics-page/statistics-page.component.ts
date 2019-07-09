@@ -39,7 +39,7 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
 
   private studentAttendedAndGotMark(student: Student, data: string[][]): boolean {
     for (const elem of data) {
-      if (!student.marks[elem[0]] || !Object.keys(student.marks[elem[0]] as string).includes(elem[1])) {
+      if (!student.marks[elem[0]] || !Object.keys(student.marks[elem[0]]).includes(elem[1])) {
         return false;
       }
     }
@@ -48,9 +48,9 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
 
   private calculateAverageMarkOfStudent(marks: IMark): number {
     let values: string[] = [];
-    for (const i in marks) {
-      if (marks.hasOwnProperty(i)) {
-        values = values.concat(Object.values((marks[i] as string[])));
+    for (const subject in marks) {
+      if (marks.hasOwnProperty(subject)) {
+        values = values.concat(Object.values(marks[subject]));
       }
     }
     return Math.round(calcAverage(values) * 100) / 100;

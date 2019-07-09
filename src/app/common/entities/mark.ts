@@ -1,4 +1,5 @@
 export interface IMark {
-  Maths?: string[];
-  Biology?: string[];
+  [subjectName: string]: {
+    [date: string]: string;
+  };
 }
