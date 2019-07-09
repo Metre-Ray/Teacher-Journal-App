@@ -29,7 +29,7 @@ export class FormComponent implements OnInit {
       } else {
         this.form.addControl(`value${index}`, new FormControl(
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я \'()]*$')]
+          [Validators.required, Validators.pattern('^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я \'-]*$'), Validators.maxLength(100)]
         ));
       }
     });

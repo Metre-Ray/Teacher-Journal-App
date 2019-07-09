@@ -7,7 +7,7 @@
   padding: 10px;
   border: none;
   background-color: black;
-  color: rgb(99, 99, 99);
+  color: #7d7d7d;
   cursor: pointer;
   transition: color 0.2s linear;
 
@@ -16,7 +16,7 @@
   }
 
   &:hover {
-    color: rgb(190, 190, 190);
+    color: rgb(206, 206, 206);
   }
 
   span {
