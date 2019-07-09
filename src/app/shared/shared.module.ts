@@ -9,6 +9,7 @@ import { SortPipe } from './pipes/sort.pipe';
 import { CustomDropdownComponent } from './components/custom-dropdown/custom-dropdown.component';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { AppTranslateModule } from './app-translate/app-translate.module';
+import { ControlErrorComponent } from './components/control-error/control-error.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AppTranslateModule } from './app-translate/app-translate.module';
     ToggleClassDirective,
     SortPipe,
     CustomDropdownComponent,
-    PopUpComponent
+    PopUpComponent,
+    ControlErrorComponent
   ],
   imports: [
     ReactiveFormsModule,

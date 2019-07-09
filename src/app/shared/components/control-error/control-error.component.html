@@ -1,0 +1,3 @@
+<small class="control-error" *ngFor="let error of errorList">
+  {{ defaultErrorList[error] ? defaultErrorList[error](errors[error]) : defaultErrorList['default']() }}
+</small>
