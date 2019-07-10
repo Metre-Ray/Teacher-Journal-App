@@ -17,24 +17,29 @@ export class BarChartComponent implements OnChanges {
 
   public drawBarChart(): void {
     const viewBoxWidth: number = 200;
-    const viewBoxHeight: number = 100;
+    const viewBoxHeightUnit: number = 10;
     const viewBoxRightPadding: number = 15;
     const xAxisHeight: number = 20;
     const yAxisWidth: number = 70;
     const tickSize: number = 2;
-    let axisFontSize: number = 6;
-    let textFontSize: number = 6;
     const rectFill: string = 'blue';
     const rectFillOnHover: string = 'rgb(80, 80, 255)';
     const rectTextFill: string = 'white';
+    const initialDataLength: number = 10;
 
-    if (this.data.length > 10) {
+    let viewBoxHeight: number = 100;
+    let textFontSize: number = 6;
+    let axisFontSize: number = 6;
+
+    if (this.data.length > initialDataLength) {
+      textFontSize = 4;
       axisFontSize = 4;
-      textFontSize = 2;
+      viewBoxHeight = viewBoxHeight + viewBoxHeightUnit * (this.data.length - initialDataLength);
     }
 
     // tslint:disable-next-line: typedef
-    const svg = d3.select('svg');
+    const svg = d3.select('svg')
+      .attr('viewBox', `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
     svg.selectAll('*').remove();
 
     const xScale: d3.ScaleLinear<number, number> = d3
