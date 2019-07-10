@@ -10,8 +10,8 @@
   <div class="content-container" *ngIf="flag">
 
     <div class="head-container">
-      <span (click)="checkAll(true)">{{'dropdown.check' | translate}}</span>
-      <span (click)="checkAll(false)">{{'dropdown.uncheck' | translate}}</span>
+      <button (click)="checkAll(true)">{{'dropdown.check' | translate}}</button>
+      <button (click)="checkAll(false)">{{'dropdown.uncheck' | translate}}</button>
     </div>
 
     <form action="" [formGroup]="form">
@@ -65,11 +65,11 @@
 
     <div class="foot-container">
       <div>
-        <span (click)="expandAll(true)">{{'dropdown.expand' | translate}}</span>
-        <span (click)="expandAll(false)">{{'dropdown.collapse' | translate}}</span>
+        <button (click)="expandAll(true)">{{'dropdown.expand' | translate}}</button>
+        <button (click)="expandAll(false)">{{'dropdown.collapse' | translate}}</button>
       </div>
       <div class="foot-container__close-btn">
-        <span (click)="toggleDropDown()">{{'dropdown.close' | translate}}</span>
+        <button (click)="toggleDropDown()">{{'dropdown.close' | translate}}</button>
       </div>
     </div>
 

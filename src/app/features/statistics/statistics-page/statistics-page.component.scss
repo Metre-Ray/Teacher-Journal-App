@@ -20,7 +20,7 @@ button {
   cursor: pointer;
   transition: background-color 0.2s linear;
 
-  &:hover {
+  &:hover, &:focus {
     background: rgba(146, 138, 255, 0.514);
   }
 

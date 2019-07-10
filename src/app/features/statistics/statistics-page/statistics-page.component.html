@@ -22,14 +22,18 @@
       <ol *ngIf="listName === 'students'" >
         <li
           *ngFor="let student of currentStudents | sort:'lastName'"
-          (click)="showStatistics(student)">
+          (click)="showStatistics(student)"
+          (keyup.space)="showStatistics(student)"
+          tabindex="0">
           {{student.name + ' ' + student.lastName}}
         </li>
       </ol>
       <ol *ngIf="listName === 'subjects'">
         <li
           *ngFor="let subject of subjects$ | async | sort:'name'"
-          (click)="showStatistics(subject)">
+          (click)="showStatistics(subject)"
+          (keyup.space)="showStatistics(subject)"
+          tabindex="0">
           {{subject.name}}
         </li>
       </ol>

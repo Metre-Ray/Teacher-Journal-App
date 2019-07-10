@@ -1,14 +1,14 @@
 <div class="wrapper">
   <div class="mcontainer">
-    <div
+    <button
       *ngFor="let subject of subjects$ | async | sort:'name'"
       class="mcontainer__subject"
       [routerLink]="''+subject.name">
       <span>{{ subject.name }}</span>
-    </div>
+    </button>
   </div>
   <div class="bottom-container">
-    <app-round-button [routerLink]="'form'">
+    <app-round-button [routerLink]="'form'" tabindex="-1">
       <span>+</span>
     </app-round-button>
     <app-round-button (click)="showModal()">

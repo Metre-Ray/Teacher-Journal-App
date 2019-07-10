@@ -57,7 +57,7 @@ label {
   cursor: pointer;
 
   &:focus {
-    outline: none;
+    outline: 1px solid white;
   }
 
   &:hover {
@@ -116,6 +116,10 @@ label {
     }
   }
 
+  input:focus ~ label .checkmark {
+    outline: 1px solid white;
+  }
+
   input:checked ~ label .checkmark:after {
     display: block;
   }
@@ -160,13 +164,19 @@ label {
   background-color: #444444;
   font-size: 0.6rem;
 
-  span {
+  button {
     margin: 5px;
+    border: none;
+    background: none;
     color: rgb(155, 155, 155);
     cursor: pointer;
 
     &:hover {
       color: white;
+    }
+
+    &:focus {
+      outline: 1px solid white;
     }
   }
 }
@@ -175,7 +185,7 @@ label {
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  span {
+  button {
     display: inline-block;
   }
 
