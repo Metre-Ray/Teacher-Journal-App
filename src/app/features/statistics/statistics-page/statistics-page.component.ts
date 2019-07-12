@@ -102,8 +102,7 @@ export class StatisticsPageComponent implements OnInit, OnDestroy {
       this.currentStudentOrSubject = `${item.name} ${(item as Student).lastName}`;
       this.statisticsData.averageMark = averageValue ? averageValue : message;
       this.createChartDataForStudent(item as Student);
-    }
-    if (this.listName === this.listNames[1]) {
+    } else if (this.listName === this.listNames[1]) {
       this.currentStudentOrSubject = `${item.name}`;
       this.createChartDataForSubject(item as Subject);
     }

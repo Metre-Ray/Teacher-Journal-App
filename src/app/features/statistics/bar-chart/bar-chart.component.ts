@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 })
 export class BarChartComponent implements OnChanges {
 
-  @Input() public data: {name: string, x: number}[] = [{name: 'A', x: 6}, {name: 'B', x: 9}, {name: 'C', x: 10}];
+  @Input() public data: {name: string, x: number}[] = [];
 
   public ngOnChanges(): void {
     this.drawBarChart();
