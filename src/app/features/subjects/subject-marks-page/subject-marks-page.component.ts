@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/reducers';
 import { Observable, Subscription } from 'rxjs';
-import { AddSubjectDate, AddDateOrMarks, DeleteDate } from 'src/app/redux/actions/actions';
+import { AddSubjectDate, AddMarks, DeleteDate } from 'src/app/redux/actions/actions';
 import { FormControl } from '@angular/forms';
 import { IState } from 'src/app/redux/state';
 import { validateDate } from 'src/app/common/helpers/validators';
@@ -15,6 +15,10 @@ interface ICellData {
   id: string;
   date: string;
   newContent: string;
+}
+
+interface INewMarks {
+  [studentId: string]: string[][];
 }
 
 @Component({
@@ -33,7 +37,7 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
   public dates: string[];
   public data$: Observable<IState> = this.store.select(selectAllData);
   public subscription: Subscription;
-  public newValues: object = {};
+  public newValues: INewMarks = {};
   public modalFlag: boolean = false;
   public teacher: FormControl = new FormControl();
 
@@ -49,9 +53,9 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
     this.subscription = this.data$.subscribe((data) => {
       this.students = data.students;
       this.subjects = data.subjects;
-      this.subjects.forEach((el) => {
-        if (el.name === this.subject) {
-          this.dates = el.dates;
+      this.subjects.forEach((subject) => {
+        if (subject.name === this.subject) {
+          this.dates = subject.dates;
         }
       });
     });
@@ -81,7 +85,7 @@ export class SubjectMarksPageComponent implements OnInit, OnDestroy {
 
   public save(event: Event): void {
     event.preventDefault();
-    this.store.dispatch(new AddDateOrMarks({subject: this.subject, values: this.newValues}));
+    this.store.dispatch(new AddMarks({subject: this.subject, values: this.newValues}));
   }
 
   public ngOnDestroy(): void {

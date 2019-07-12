@@ -5,22 +5,20 @@ import { cloneObject } from 'src/app/common/helpers/deepCopy';
 import { IState, initialState } from '../state';
 import { genId } from 'src/app/common/helpers/generateid';
 import { convertStudentDataToObjects, convertSubjectDataToObjects } from 'src/app/common/helpers/converters';
+import { IMark } from 'src/app/common/entities/mark';
 
 export function Reducer(state: IState = initialState, action: ActionsUnion): IState {
   switch (action.type) {
 
     case ActionTypes.AddStudent: {
       const newState: IState = cloneObject(state) as IState;
-      if (newState.students.find(student => student.name === action.payload.name && student.lastName === action.payload.surname)) {
+      if (newState.students.find(student => student.name === action.payload.name && student.lastName === action.payload.lastName)) {
         return newState;
       }
       const newStudent: Student = new Student(
         {
+          ...action.payload,
           id: genId(),
-          name: action.payload.name,
-          lastName: action.payload.surname,
-          address: action.payload.address,
-          description: action.payload.description,
           marks: {}
         }
       );
@@ -35,11 +33,8 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
       }
       const newSubject: Subject = new Subject(
         {
+          ...action.payload,
           id: genId(),
-          name: action.payload.name,
-          teacher: action.payload.teacher,
-          room: action.payload.room,
-          description: action.payload.description,
           dates: []
         }
       );
@@ -57,25 +52,16 @@ export function Reducer(state: IState = initialState, action: ActionsUnion): ISt
       return newState;
     }
 
-    case ActionTypes.AddDateOrMarks: {
+    case ActionTypes.AddMarks: {
       const newState: IState = cloneObject(state) as IState;
       const values: object = action.payload.values;
       if (!action.payload.subject || Object.keys(values).length === 0) { return newState; }
-      try {
-        for (const id of Object.keys(values)) {
-          const marks: object = newState.students.find((el) => el.id === id).marks;
-          if (marks[action.payload.subject] === undefined) { marks[action.payload.subject] = {}; }
-          values[id].forEach((value) => {
-            if (value[1] === '') {
-              delete marks[action.payload.subject][value[0]];
-            } else {
-              marks[action.payload.subject][value[0]] = value[1];
-            }
-          });
-        }
-      } catch {
-        console.log('Error in AddDateOrMarks!');
-        return newState;
+      for (const id of Object.keys(values)) {
+        const marks: IMark = newState.students.find((student) => student.id === id).marks;
+        if (!marks[action.payload.subject]) { marks[action.payload.subject] = {}; }
+        values[id].forEach((value) => {
+          marks[action.payload.subject][value[0]] = value[1];
+        });
       }
       return newState;
     }
