@@ -4,16 +4,33 @@
 </div>
 <div class="mcontainer">
   <app-form
-    [labels] = "['studentPage.form.name' | translate,
-      'studentPage.form.surname' | translate,
-      'studentPage.form.address' | translate,
-      'studentPage.form.description' | translate]"
-    [placeholders] = "['studentPage.form.placeholder1' | translate,
-      'studentPage.form.placeholder2' | translate,
-      'studentPage.form.placeholder3' | translate,
-      'studentPage.form.placeholder4' | translate]"
     [buttonName]="'add' | translate"
-    [required]="[true, true, false, false]"
-    (submitted)="onSubmit($event)">
+    (submitted)="onSubmit($event)"
+    [labels]="[
+      {
+        type: 'input',
+        name: 'studentPage.form.name' | translate,
+        placeholder: 'studentPage.form.placeholder1' | translate,
+        required: true
+      },
+      {
+        type: 'input',
+        name: 'studentPage.form.surname' | translate,
+        placeholder: 'studentPage.form.placeholder2' | translate,
+        required: true
+      },
+      {
+        type: 'input',
+        name: 'studentPage.form.address' | translate,
+        placeholder: 'studentPage.form.placeholder3' | translate,
+        required: false
+      },
+      {
+        type: 'textarea',
+        name: 'studentPage.form.description' | translate,
+        placeholder: 'studentPage.form.placeholder4' | translate,
+        required: false
+      }
+    ]">
   </app-form>
 </div>

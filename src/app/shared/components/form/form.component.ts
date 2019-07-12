@@ -2,8 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 interface IFormData {
-  value0?: string;
-  value1?: string;
+  [valueNumber: string]: string;
 }
 
 @Component({
@@ -13,23 +12,28 @@ interface IFormData {
 })
 export class FormComponent implements OnInit {
 
-  @Input() public labels: string[] = [];
-  @Input() public placeholders: string[] = [];
-  @Input() public required: boolean[] = [];
+  @Input() public labels: {
+    type: string,
+    name: string,
+    placeholder: string,
+    required: boolean
+  }[] = [];
   @Input() public buttonName: string;
   @Output() public submitted: EventEmitter<IFormData> = new EventEmitter();
+
   public resetValues: IFormData = {};
+  public inputPattern: string = '^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я \'-]*$';
   public form: FormGroup = new FormGroup({});
 
   private addControls(): void {
     this.labels.forEach((label, index) => {
       this.resetValues[`value${index}`] = '';
-      if (!this.required[index]) {
+      if (!label.required) {
         this.form.addControl(`value${index}`, new FormControl(''));
       } else {
         this.form.addControl(`value${index}`, new FormControl(
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я \'-]*$'), Validators.maxLength(100)]
+          [Validators.required, Validators.pattern(this.inputPattern), Validators.maxLength(100)]
         ));
       }
     });

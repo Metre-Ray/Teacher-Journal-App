@@ -15,19 +15,29 @@ export class SubjectFormComponent implements OnInit {
 
   @ViewChild('popUpContainer', {read: ViewContainerRef}) public popUp: ViewContainerRef;
   public component: ComponentRef<PopUpComponent>;
+  public popUpTitle: string = 'Success!';
+  public popUpText: string = 'New subject was added';
   public subscription: Subscription;
 
   constructor(private store: Store<State>,  private actions$: Actions, private resolver: ComponentFactoryResolver) { }
+
+  private createPopUp(title: string, text: string, success: boolean): void {
+    const factory: ComponentFactory<PopUpComponent> = this.resolver.resolveComponentFactory(PopUpComponent);
+    this.component = this.popUp.createComponent(factory);
+    this.component.instance.title = title;
+    this.component.instance.text = text;
+    this.component.instance.success = success;
+    setTimeout(() => {
+      this.component.destroy();
+    },         2000);
+  }
 
   public ngOnInit(): void {
     this.subscription = this.actions$.pipe(
       ofType(ActionTypes.AddSubject)
     )
     .subscribe(() => {
-      const title: string = 'Success!';
-      const text: string = 'New subject was added';
-      const success: boolean = true;
-      this.createPopUp(title, text, success);
+      this.createPopUp(this.popUpTitle, this.popUpText, true);
     });
   }
 
@@ -39,16 +49,5 @@ export class SubjectFormComponent implements OnInit {
       description: data.value3
     };
     this.store.dispatch(new AddSubject(subject));
-  }
-
-  public createPopUp(title: string, text: string, success: boolean): void {
-    const factory: ComponentFactory<PopUpComponent> = this.resolver.resolveComponentFactory(PopUpComponent);
-    this.component = this.popUp.createComponent(factory);
-    this.component.instance.title = title;
-    this.component.instance.text = text;
-    this.component.instance.success = success;
-    setTimeout(() => {
-      this.component.destroy();
-    },         2000);
   }
 }
