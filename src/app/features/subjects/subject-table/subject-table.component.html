@@ -1,0 +1,34 @@
+<table
+  class="table table-striped table-bordered table-hover table-dark"
+  tabindex="0">
+  <caption>Table of student marks</caption>
+  <thead>
+    <tr>
+      <th>{{'subjectPage.table.head1' | translate}}</th>
+      <th>{{'subjectPage.table.head2' | translate}}</th>
+      <th>{{'subjectPage.table.head3' | translate}}</th>
+      <th>{{'subjectPage.table.head4' | translate}}</th>
+      <th *ngFor="let date of dates" class="date">
+        {{ date | date }}
+        <span
+          class="fas fa-trash-alt"
+          (click)="onColumnDelete(date, $event)">
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students; let i=index">
+      <td>{{i + 1}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.lastName}}</td>
+      <td>{{calcAverageMark(student.marks) || ''}}</td>
+      <td
+        contenteditable
+        *ngFor="let date of dates"
+        (input)="onMarkEdit(student.id, date, $event)">
+        {{student.marks[subject] ? student.marks[subject][date] : ''}}
+      </td>
+    </tr>
+  </tbody>
+</table>

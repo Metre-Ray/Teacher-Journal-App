@@ -1,0 +1,22 @@
+@import '../../../../styles/button';
+
+input, textarea {
+  border-color: rgb(80, 89, 131);
+  color: white;
+
+  &:focus {
+    color: white;
+  }
+
+  &.ng-invalid {
+    border: 1px solid rgb(184, 101, 101);
+  }
+}
+
+button:hover {
+  background: #007bff;
+}
+
+.btn-container {
+  text-align: center;
+}

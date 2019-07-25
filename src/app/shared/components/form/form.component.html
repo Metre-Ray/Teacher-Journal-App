@@ -1,0 +1,36 @@
+<form action="" (submit)="onSubmit($event)" [formGroup]="form" *ngIf="labels.length > 0">
+
+  <div class="form-group" *ngFor="let label of labels; let i=index">
+    <label for="{{label.name}}" class="col-form-label">
+      {{label.name}}
+    </label>
+    <input
+      *ngIf="label.type === 'input'"
+      type="text"
+      id="{{label.name}}"
+      placeholder="{{label.placeholder}}"
+      class="form-control bg-dark"
+      autocomplete="off"
+      formControlName="{{'value'+i}}">
+    <textarea
+      *ngIf="label.type === 'textarea'"
+      cols="30"
+      rows="10"
+      id="{{label.name}}"
+      placeholder="{{label.placeholder}}"
+      class="form-control bg-dark"
+      formControlName="{{'value'+i}}">
+    </textarea>
+    <app-control-error [errors]="form.get('value'+i).errors"></app-control-error>
+  </div>
+
+  <div class="form-group btn-container">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!form.valid">
+      {{buttonName}}
+    </button>
+  </div>
+
+</form>

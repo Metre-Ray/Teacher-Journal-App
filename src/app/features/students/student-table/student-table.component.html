@@ -1,0 +1,31 @@
+<table
+  class="table table-striped table-bordered table-hover table-dark"
+  tabindex="0">
+  <caption>List of students</caption>
+  <thead>
+    <tr>
+      <th>{{'studentPage.table.head1' | translate}}</th>
+      <th>{{'studentPage.table.head2' | translate}}</th>
+      <th>{{'studentPage.table.head3' | translate}}</th>
+      <th>{{'studentPage.table.head4' | translate}}</th>
+      <th>{{'studentPage.table.head5' | translate}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students; let i=index" [appToggleClass]="'selected'">
+      <td>{{i + 1}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.lastName}}</td>
+      <td>
+        <div class="block1">{{student.address}}</div>
+      </td>
+      <td>
+        <div class="block2">{{student.description}}</div>
+      </td>
+      <td class="remove" (click)="removeRow(student)">
+        <span class="fas fa-times"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>

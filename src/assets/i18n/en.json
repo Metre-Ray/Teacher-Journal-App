@@ -1,0 +1,69 @@
+{
+  "title": "Teacher Journal",
+  "save": "Save",
+  "close": "Close",
+  "add": "Add",
+  "panel": {
+    "button1": "Students",
+    "button2": "Subjects",
+    "button3": "Statistics",
+    "button4": "Export"
+  },
+  "studentPage": {
+    "table": {
+      "head1": "Index",
+      "head2": "Name",
+      "head3": "Surname",
+      "head4": "Address",
+      "head5": "Description"
+    },
+    "form": {
+      "purpose": "Add new student",
+      "name": "* Name",
+      "surname": "* Surname",
+      "address": "Address",
+      "description": "Description",
+      "add": "Add",
+      "placeholder1": "Jack",
+      "placeholder2": "Black",
+      "placeholder3": "Zhukova, 29",
+      "placeholder4": "Juicy details"
+    }
+  },
+  "subjectPage": {
+    "table": {
+      "head1": "Index",
+      "head2": "Name",
+      "head3": "Surname",
+      "head4": "Average Mark"
+    },
+    "form": {
+      "purpose": "Add new subject",
+      "name": "* Name",
+      "teacher": "* Teacher: Name Surname",
+      "room": "Room",
+      "description": "Description",
+      "add": "Add",
+      "placeholder1": "Physics",
+      "placeholder2": "Ivan Mask",
+      "placeholder3": "666",
+      "placeholder4": "Best subject ever"
+    },
+    "newDateForm": {
+      "description": "Add new date"
+    }
+  },
+  "statisticsPage": {
+    "students": "Students",
+    "subjects": "Subjects",
+    "student": "Student",
+    "averageMark": "Average mark"
+  },
+  "dropdown": {
+    "check": "CHECK ALL",
+    "uncheck": "UNCHECK ALL",
+    "expand": "EXPAND ALL",
+    "collapse": "COLLAPSE ALL",
+    "close": "CLOSE"
+  }
+}

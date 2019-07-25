@@ -1,0 +1,36 @@
+<p>{{'studentPage.form.purpose' | translate}}: </p>
+<div class='pop-up-container'>
+  <div #popUpContainer></div>
+</div>
+<div class="mcontainer">
+  <app-form
+    [buttonName]="'add' | translate"
+    (submitted)="onSubmit($event)"
+    [labels]="[
+      {
+        type: 'input',
+        name: 'studentPage.form.name' | translate,
+        placeholder: 'studentPage.form.placeholder1' | translate,
+        required: true
+      },
+      {
+        type: 'input',
+        name: 'studentPage.form.surname' | translate,
+        placeholder: 'studentPage.form.placeholder2' | translate,
+        required: true
+      },
+      {
+        type: 'input',
+        name: 'studentPage.form.address' | translate,
+        placeholder: 'studentPage.form.placeholder3' | translate,
+        required: false
+      },
+      {
+        type: 'textarea',
+        name: 'studentPage.form.description' | translate,
+        placeholder: 'studentPage.form.placeholder4' | translate,
+        required: false
+      }
+    ]">
+  </app-form>
+</div>

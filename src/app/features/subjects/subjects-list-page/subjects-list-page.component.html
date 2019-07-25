@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="mcontainer">
+    <button
+      *ngFor="let subject of subjects$ | async | sort:'name'"
+      class="mcontainer__subject"
+      [routerLink]="''+subject.name">
+      <span>{{ subject.name }}</span>
+    </button>
+  </div>
+  <div class="bottom-container">
+    <app-round-button [routerLink]="'form'" tabindex="-1">
+      <span>+</span>
+    </app-round-button>
+    <app-round-button (click)="showModal()">
+      <span>-</span>
+    </app-round-button>
+  </div>
+</div>
+
+<div class="modal-container" *ngIf="modalFlag">
+  <p>
+    Enter subject's name:
+    <input #subjectName type="text" class="form-control">
+  </p>
+  <button class="btn btn-primary" (click)="deleteSubject(subjectName.value)">
+    Delete
+  </button>
+  <button class="btn btn-primary" (click)="showModal()">
+    Cancel
+  </button>
+</div>

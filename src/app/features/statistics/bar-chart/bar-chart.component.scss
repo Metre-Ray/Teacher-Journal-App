@@ -1,0 +1,21 @@
+.chart {
+  width: 80%;
+  max-width: 800px;
+
+  > text {
+    cursor: default;
+  }
+}
+
+.x-axis, .y-axis {
+  font-size: 8px;
+
+  text {
+    fill: #0074d9;
+  }
+
+  path, line {
+    stroke: #c0e2ff;
+    stroke-width: 0.4px;
+  }
+}

@@ -1,0 +1,18 @@
+@import '../../../../styles/button';
+@import '../../../../styles/modal';
+
+.buttons-container {
+  margin: 30px;
+  text-align: center;
+
+  span {
+    position: relative;
+    top: -4px;
+    font-weight: bold;
+  }
+}
+
+.table-container {
+  height: 70vh;
+  overflow: auto;
+}

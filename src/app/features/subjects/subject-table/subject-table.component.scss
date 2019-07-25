@@ -1,0 +1,23 @@
+caption {
+  color: #747d86;
+}
+
+.invalid {
+  color: rgb(255, 96, 96);
+}
+
+.date {
+  position: relative;
+
+  span {
+    visibility: hidden;
+    position: absolute;
+    top: 2px;
+    left: 100%;
+    transform: translateX(-100%);
+  }
+
+  &:hover span {
+    visibility: visible;
+  }
+}

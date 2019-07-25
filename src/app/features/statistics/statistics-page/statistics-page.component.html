@@ -1,0 +1,58 @@
+<div class="dropdown-container">
+  <app-custom-dropdown
+    [values1]="subjectNames"
+    [values2]="dates"
+    [label]="'Select students by date'"
+    (selected)="onDropdownSelect($event)">
+  </app-custom-dropdown>
+</div>
+
+<div class="mcontainer">
+
+  <div class="panel-container">
+    <div class="panel-container__buttons">
+      <button (click)="chooseList('students')">
+        {{'statisticsPage.students' | translate}}
+      </button>
+      <button (click)="chooseList('subjects')">
+        {{'statisticsPage.subjects' | translate}}
+      </button>
+    </div>
+    <div class="panel-container__list">
+      <ol *ngIf="listName === 'students'" >
+        <li
+          *ngFor="let student of currentStudents | sort:'lastName'"
+          (click)="showStatistics(student)"
+          (keyup.space)="showStatistics(student)"
+          tabindex="0">
+          {{student.name + ' ' + student.lastName}}
+        </li>
+      </ol>
+      <ol *ngIf="listName === 'subjects'">
+        <li
+          *ngFor="let subject of subjects$ | async | sort:'name'"
+          (click)="showStatistics(subject)"
+          (keyup.space)="showStatistics(subject)"
+          tabindex="0">
+          {{subject.name}}
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="statistics-container">
+    <div class="statistics-container__data">
+      <div>
+        <span *ngIf="listName === listNames[0]">{{'statisticsPage.student' | translate}}:</span>
+        <span *ngIf="listName === listNames[1]">{{'statisticsPage.subjects' | translate}}:</span>
+        {{currentStudentOrSubject}}
+      </div>
+      <div>
+        <span>{{'statisticsPage.averageMark' | translate}}:</span>
+        {{statisticsData.averageMark}}
+      </div>
+      <app-bar-chart [data]="chartData"></app-bar-chart>
+    </div>
+  </div>
+
+</div>

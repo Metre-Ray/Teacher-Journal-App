@@ -1,0 +1,36 @@
+<h2>{{subject}}</h2>
+
+<div class="top-btn-container">
+  <button
+    class="btn btn-primary btn-add"
+    (click)="showModal(true)">
+    <span>+</span>
+  </button>
+</div>
+
+<div class="modal-container" *ngIf="modalFlag">
+  <app-new-date-form
+    (submitted)="addDate($event)"
+    (closed)="showModal(false)">
+  </app-new-date-form>
+</div>
+
+<div class="table-container" *ngIf="subject">
+  <app-subject-table
+    [students]="students | sort:'lastName'"
+    [dates]="dates" [subject]="subject"
+    (edited)="onEdit($event)"
+    (columnDeleted)="deleteDate($event)">
+  </app-subject-table>
+</div>
+
+<div class="form-container">
+  <form
+    action=""
+    (submit)="save($event)"
+    [formGroup]="teacher">
+    <div class="form-container__btn">
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+  </form>
+</div>

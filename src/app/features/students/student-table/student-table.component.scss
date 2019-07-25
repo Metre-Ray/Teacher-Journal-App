@@ -1,0 +1,23 @@
+caption {
+  color: #747d86;
+}
+
+.block1 {
+  width: 100%;
+  min-width: 300px;
+}
+
+.block2 {
+  width: 100%;
+  min-width: 500px;
+}
+
+.selected {
+  border: 2px solid rgb(124, 185, 255);
+  color: rgb(179, 214, 255);
+}
+
+.remove {
+  vertical-align: middle;
+  cursor: pointer;
+}
